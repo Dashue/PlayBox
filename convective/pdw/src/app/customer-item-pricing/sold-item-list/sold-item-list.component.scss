@@ -1,0 +1,41 @@
+@import '../../shared/theming';
+
+:host {
+  height: 800px;
+  margin-top: 8px;
+  overflow-y: auto;
+}
+
+.mat-list {
+  height: 800px;
+  padding-top: 0;
+}
+.mat-list-item {
+  cursor: pointer;
+  padding: 16px 0;
+
+  &:nth-child(2n) {
+    background-color: $light-background;
+  }
+  &:nth-child(2n-1) {
+    background-color: mat-color($app-accent, 50, 0.4);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: mat-color($app-accent, 50);
+  }
+  &.active {
+    background-color: mat-color($app-accent, 100);
+  }
+}
+#noSoldItems {
+  margin: 8px 0;
+  padding: 66px 24px;
+  background-color: mat-color($app-accent, 50);
+}
+#errorMessage {
+  margin: 8px 0;
+  padding: 66px 24px;
+  background-color: mat-color($app-warn, 50);
+}

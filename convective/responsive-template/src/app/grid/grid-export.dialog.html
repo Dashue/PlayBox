@@ -1,0 +1,14 @@
+<label matDialogTitle>Grid Export</label>
+<mat-dialog-content>
+  <form [formGroup]="exportForm" fxLayout="row" fxLayoutWrap fxLayoutAlign="start center" fxFlex="100">
+    <mat-select fxFlex="100" formControlName="fileType" placeholder="File Type" color="accent">
+      <mat-option *ngFor="let item of fileTypes" [value]="item.value">{{item.name}}</mat-option>
+    </mat-select>
+    <mat-select fxFlex="100" formControlName="exportType" placeholder="Records" color="accent">
+      <mat-option *ngFor="let item of exportTypes" [value]="item.value">{{item.name}}</mat-option>
+    </mat-select>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end center">
+  <button mat-button color="accent" (click)="close()">EXPORT</button>
+</mat-dialog-actions>

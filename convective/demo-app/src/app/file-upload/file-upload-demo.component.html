@@ -1,0 +1,18 @@
+<md-card id="file-upload" fxFlex="100" fxFlex.gt-xs="60" fxFlex.gt-md="40">
+  <md-card-content fxLayout="column">
+    <h2>File upload button demo</h2>
+    Configurable parameters are:
+    <ul dense fxFlex="50">
+      <li>enableDropArea</li>
+      <li>enableMultipleFiles</li>
+      <li>displayConcurrencyInput</li>
+      <li>displayAutoUpload</li>
+      <li>autoUpload</li>
+    </ul>
+  </md-card-content>
+  <hfc-file-upload [enableDropArea]="true" [enableMultipleFiles]="false" [autoUpload]="true"
+                   [displayConcurrencyInput]="false" [displayAutoUpload]="false">
+  </hfc-file-upload>
+  <md-card-actions>
+  </md-card-actions>
+</md-card>

@@ -1,0 +1,37 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap *ngIf="!isLoadingActiveSearch && !errorMessage"
+      (keyup.enter)="submit()">
+  <hfc-autocomplete
+    [parentForm]="form" idControlName="brandKey"
+    descriptionControlName="brandDescription" (searchClick)="brandSearch()" idPlaceholder="Brand"
+    descriptionPlaceholder="Brand Description"
+    [idOptions]="idFilteredOptions | async"
+    [descriptionOptions]="descriptionFilteredOptions | async">
+  </hfc-autocomplete>
+
+  <md-form-field dividerColor="accent">
+    <input mdInput [mdDatepicker]="effectiveDatePicker" placeholder="Effective Date"
+           formControlName="effectiveDate" type="search">
+    <md-datepicker-toggle mdSuffix [for]="effectiveDatePicker"></md-datepicker-toggle>
+    <md-datepicker #effectiveDatePicker></md-datepicker>
+  </md-form-field>
+
+  <md-select placeholder="Price List" formControlName="priceListId" id="priceList" color="accent">
+    <md-option></md-option>
+    <md-option *ngFor="let option of priceListOptions" [value]="option.fieldId">
+      {{ option.fieldDisplayText }}
+    </md-option>
+  </md-select>
+
+  <md-select placeholder="Display" formControlName="displayType" id="displayOptions" color="accent">
+    <md-option *ngFor="let option of displayOptions" [value]="option.value">
+      {{ option.text }}
+    </md-option>
+  </md-select>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+  <span id="errorMessage">{{errorMessage}}</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <md-progress-spinner mode="indeterminate" color="accent" *ngIf="isLoadingActiveSearch && !errorMessage">
+  </md-progress-spinner>
+</div>

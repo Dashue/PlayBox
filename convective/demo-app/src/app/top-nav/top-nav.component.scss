@@ -1,0 +1,32 @@
+@import '../shared/breakpoints';
+@import '../shared/theming';
+
+.mat-toolbar {
+  img {
+    height: 80%;
+  }
+  .title {
+    padding-left: 16px;
+    padding-right: 32px;
+  }
+}
+#userMenu {
+  display: none;
+  min-width: 0;
+
+  @include breakpoint($tablet) {
+    display: inherit;
+    text-transform: capitalize;
+  }
+}
+.topNav {
+  .mat-button {
+    opacity: 0.5;
+      color: mat-color($app-primary, 900);
+
+    &.active {
+      opacity: 1;
+      color: mat-color($app-primary);
+    }
+  }
+}

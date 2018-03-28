@@ -1,0 +1,15 @@
+<md-list *ngIf="soldItemsList && soldItemsList.length > 0" fxFlex="100">
+  <md-list-item [ngClass]="{'active': selectedItem === item}" *ngFor="let item of soldItemsList"
+                (click)="onItemClick(item)" tabindex="0" (keyup.enter)="onItemClick(item)">
+    {{item.itemNumber}} - {{item.description}}
+  </md-list-item>
+</md-list>
+<div id="noSoldItems" *ngIf="soldItemsList && soldItemsList.length === 0">
+  No sold items found for the specified customer and effective date.
+</div>
+<div id="errorMessage" *ngIf="errorMessage">
+  An error occurred when retrieving the list of sold items for this customer: <strong>{{errorMessage}}</strong>.
+</div>
+<div *ngIf="!soldItemsList && !errorMessage">
+  <md-progress-spinner mode="indeterminate" color="accent"></md-progress-spinner>
+</div>

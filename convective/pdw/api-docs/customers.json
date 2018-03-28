@@ -1,0 +1,337 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Customer API",
+    "description": "Customer API Specification",
+    "version": "0.0.1",
+    "x-projectname": "oppdw_customer"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/apps/OPPDW/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/customers": {
+      "get": {
+        "summary": "Get a list of customers",
+        "description": "Returns customers that fit the applied filters, sorting, search, and paging parameters.",
+        "operationId": "getCustomers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Page number of result set to return"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Number of entries to return per request"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Grid fields to return in the response. Return all fields if missing or empty"
+          },
+          {
+            "name": "gridSortColumn",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Ordered and comma separated list of columns to sort by"
+          },
+          {
+            "name": "gridSortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Ordered and comma separated list of column sort directions"
+          },
+          {
+            "name": "restrictSearch",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "0",
+              "1"
+            ],
+            "description": "Restricted search filter"
+          },
+          {
+            "name": "bracketId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by bracket id"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by city"
+          },
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by customer number"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by customer name"
+          },
+          {
+            "name": "outletName",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by outlet name"
+          },
+          {
+            "name": "outletNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by outlet number"
+          },
+          {
+            "name": "priceList",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by price list id"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by state abbreviation (AK, FL, MN, etc.)"
+          },
+          {
+            "name": "zipcode",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by ZIP Code"
+          },
+          {
+            "name": "gridName",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "gridName for grid user selection"
+          },
+          {
+            "name": "exportConfigurationID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "gridUserSelectionID of temp grid user selection for download"
+          },
+          {
+            "name": "outputType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Options include application/json,application/pdf,application/vnd.ms-excel"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Collection returned",
+            "schema": {
+              "$ref": "#/definitions/customerList"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "summary": "Get a customer",
+        "description": "Get a customer.",
+        "operationId": "getCustomer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id of customer to return"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Customer returned",
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/responses/ResourceNotFound"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "ResourceNotFound": {
+      "description": "The specified resource could not be found"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "customerList": {
+      "type": "object",
+      "required": [
+        "data",
+        "page",
+        "pageSize",
+        "total"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/customer"
+          }
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "required": [
+        "mrCustomerId",
+        "customerNumber",
+        "name"
+      ],
+      "properties": {
+        "mrCustomerId": {
+          "type": "integer",
+          "description": "Customer Id from Master System"
+        },
+        "customerNumber": {
+          "type": "string",
+          "description": "Customer number"
+        },
+        "name": {
+          "type": "string",
+          "description": "Customer name"
+        },
+        "city": {
+          "type": "string",
+          "description": "Customer city"
+        },
+        "state": {
+          "type": "string",
+          "description": "Customer state"
+        },
+        "zipcode": {
+          "type": "integer",
+          "description": "Customer ZIP Code"
+        },
+        "territoryNumber": {
+          "type": "string",
+          "description": "Sales territory"
+        },
+        "territoryName": {
+          "type": "string",
+          "description": "Sales territory name"
+        },
+        "districtNumber": {
+          "type": "string",
+          "description": "Sales district"
+        },
+        "districtName": {
+          "type": "string",
+          "description": "Sales district name"
+        },
+        "regionNumber": {
+          "type": "string",
+          "description": "Sales region"
+        },
+        "regionName": {
+          "type": "string",
+          "description": "Sales region name"
+        },
+        "divisionNumber": {
+          "type": "string",
+          "description": "Sales division"
+        },
+        "divisionName": {
+          "type": "string",
+          "description": "Sales division name"
+        },
+        "priceList": {
+          "type": "integer",
+          "description": "Customer price list id"
+        },
+        "bracketId": {
+          "type": "integer",
+          "description": "Customer price bracket"
+        }
+      }
+    }
+  }
+}

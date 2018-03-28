@@ -1,0 +1,64 @@
+<md-card id="grid-container">
+  <md-card-header fxLayout="row" fxLayoutAlign="start center">
+    <div *ngIf="showEditOptions">
+      <button md-button color="primary" fxHide fxShow.gt-xs routerLink="new">Create New</button>
+      <button md-icon-button color="primary" fxHide fxShow.xs routerLink="new">
+        <md-icon>add</md-icon>
+      </button>
+      <span mdTooltip="Select a row to enable editing">
+        <button class="editRowButton" md-button color="primary" routerLink="new"
+                [disabled]="!allowEditRow" fxHide fxShow.gt-xs>
+          Edit
+        </button>
+        <button class="editRowButton" md-icon-button color="primary" routerLink="new"
+                [disabled]="!allowEditRow" fxHide fxShow.xs>
+          <md-icon>edit</md-icon>
+        </button>
+      </span>
+      <span mdTooltip="Select a row to enable deleting">
+        <button class="deleteRowButton" md-button color="primary" [disabled]="!allowDeleteRow"
+                (click)="deleteCurrentRow()" fxHide fxShow.gt-xs>
+          Delete
+        </button>
+        <button class="deleteRowButton" md-icon-button color="primary" [disabled]="!allowDeleteRow"
+                (click)="deleteCurrentRow()" fxHide fxShow.xs>
+          <md-icon>delete</md-icon>
+        </button>
+      </span>
+      <span mdTooltip="Select visible columns">
+         <button class="pickColumnsButton" md-button color="primary" (click)="openColumnPicker()"
+                 fxHide fxShow.gt-xs>
+          Columns
+        </button>
+        <button class="pickColumnsButton" md-icon-button color="primary"
+                (click)="openColumnPicker()" fxHide fxShow.xs>
+          <md-icon>view_column</md-icon>
+        </button>
+      </span>
+      <span *ngIf="showClearSort" mdTooltip="Clear column sorting">
+        <button md-button color="primary" (click)="clearSort()" fxHide fxShow.gt-xs>
+          Clear Sort
+        </button>
+        <button md-icon-button color="primary" (click)="clearSort()" fxHide fxShow.xs>
+          <md-icon>clear_all</md-icon>
+        </button>
+      </span>
+    </div>
+    <span fxFlex></span>
+    <form [formGroup]="gridOptionsForm" id="gridOptionsForm" fxLayout="row"
+          fxLayoutAlign="center center">
+      <button id="saveOptionsButton" md-icon-button color="primary"><md-icon>save</md-icon></button>
+      <md-select formControlName="gridConfig">
+        <md-option value="System Default">System Default</md-option>
+        <md-option value="My Grid Config">My Grid Config</md-option>
+      </md-select>
+    </form>
+  </md-card-header>
+  <md-card-content>
+    <wj-flex-grid #grid [isReadOnly]="isReadOnly"
+                  [selectionMode]="'Row'" [showAlternatingRows]="true"></wj-flex-grid>
+    <md-paginator [pageSizeOptions]="pageSizeOptions" [length]="collectionView.totalItemCount"
+                  [pageSize]="collectionView.pageSize"
+      (page)="onPageChanged($event)"></md-paginator>
+  </md-card-content>
+</md-card>

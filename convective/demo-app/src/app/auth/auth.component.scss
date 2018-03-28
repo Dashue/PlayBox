@@ -1,0 +1,12 @@
+@import '../shared/theming';
+
+img {
+  margin-bottom: 64px;
+  margin-top: 64px;
+}
+.errorMessage {
+  color: mat-color($app-warn);
+  padding: 32px;
+  margin: 16px;
+  background-color: mat-color($app-warn, 50);
+}

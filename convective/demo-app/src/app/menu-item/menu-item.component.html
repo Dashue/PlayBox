@@ -1,0 +1,15 @@
+<md-list-item [ngStyle]="{'padding-left': (depth * 8) + 'px'}" (click)="onItemSelected(item)"
+              [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
+  <md-icon class="routeIcon">{{item.iconName}}</md-icon>
+  {{item.name}}
+  <span fxFlex *ngIf="item.children.length">
+    <span fxFlex></span>
+    <md-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+      expand_more
+    </md-icon>
+  </span>
+</md-list-item>
+<div *ngIf="expanded">
+  <hfc-menu-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
+  </hfc-menu-item>
+</div>

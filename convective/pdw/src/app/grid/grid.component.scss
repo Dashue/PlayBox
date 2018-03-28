@@ -1,0 +1,101 @@
+@import '../shared/breakpoints';
+@import '../shared/theming';
+
+#grid-container.mat-card {
+  padding: 0;
+
+  md-card-content {
+    margin: 0 8px 8px 8px;
+
+    #select {
+      height: 40px;
+      align-self: center;
+    }
+  }
+  md-card-header button {
+    margin-left: 8px;
+  }
+  .mat-icon-button {
+    &.editRowButton,
+    &.deleteRowButton,
+    &.pickColumnsButton {
+      margin-left: 8px;
+    }
+  }
+  wj-flex-grid {
+    border-radius: 4px 4px 0 0;
+  }
+  .grid-options-menu {
+    padding-left: 8px;
+  }
+  .button-bar {
+    display: none;
+  }
+  .icon-button-bar {
+    display: none;
+  }
+  .icon-button-bar-overflow {
+    display: none;
+  }
+  md-progress-spinner {
+    height: 48px;
+    width: 48px;
+  }
+  .tableSpinnerContainer {
+    height: 161px;
+  }
+
+  .noRecordsContainer {
+    height: 161px;
+    margin: 8px 0;
+    padding: 66px 24px;
+    background-color: mat-color($app-accent, 50);
+  }
+
+  .errorMessageContainer {
+    padding: 48px;
+    background-color: mat-color($app-warn, 50);
+    border-radius: 4px;
+  }
+
+  hfc-grid-configuration {
+    visibility: hidden;
+  }
+}
+@include breakpoint(400px) {
+  #grid-container.mat-card {
+    .grid-options-menu {
+      display: none;
+    }
+    .icon-button-bar-overflow {
+      display: block;
+    }
+  }
+}
+@include breakpoint($large-handset) {
+  #grid-container.mat-card {
+    #select {
+      margin-left: 30px;
+    }
+  }
+}
+@include breakpoint(500px) {
+  #grid-container.mat-card {
+    .icon-button-bar-overflow {
+      display: none;
+    }
+    .icon-button-bar {
+      display: block;
+    }
+  }
+}
+@include breakpoint($large-tablet) {
+  #grid-container.mat-card {
+    .icon-button-bar {
+      display: none;
+    }
+    .button-bar {
+      display: block;
+    }
+  }
+}

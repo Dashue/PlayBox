@@ -1,0 +1,18 @@
+<md-sidenav-container>
+  <md-sidenav #appDrawer mode="over" opened="false">
+    <div class="sidenav-toolbar mat-elevation-z1" fxLayoutWrap>
+      <div id="userName" fxLayout="row" fxLayoutAlign="start end">
+        <md-icon>person</md-icon>
+        <span *ngIf="authService.isLoggedIn">
+          {{authService.firstName | lowercase}}
+        </span>
+      </div>
+      <button md-button class="self-end" id="logoutButton" (click)="logout()">Logout</button>
+    </div>
+    <md-nav-list>
+      <hfc-menu-item *ngFor="let item of navItems" [item]="item"></hfc-menu-item>
+    </md-nav-list>
+  </md-sidenav>
+  <hfc-top-nav></hfc-top-nav>
+  <router-outlet></router-outlet>
+</md-sidenav-container>

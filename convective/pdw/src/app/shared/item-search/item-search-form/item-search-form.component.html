@@ -1,0 +1,36 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap *ngIf="gridConfigLoaded" (keyup.enter)="submit()">
+  <hfc-autocomplete [parentForm]="form" idControlName="itemKey"
+                    descriptionControlName="itemDescription"
+                    idPlaceholder="Item" descriptionPlaceholder="Item Description"
+                    [idOptions]="filteredItemIdOptions | async" [hideLookup]="true"
+                    [descriptionOptions]="filteredItemDescriptionOptions | async">
+  </hfc-autocomplete>
+
+  <md-select formControlName="pricing" placeholder="Pricing Unit" id="pricingUnit" color="accent">
+    <md-option></md-option>
+    <md-option *ngFor="let option of staticLookupsService.pricingOptions" [value]="option.value">
+      {{option.text}}
+    </md-option>
+  </md-select>
+
+  <md-select formControlName="orderable" placeholder="Orderable" id="orderable" color="accent">
+    <md-option></md-option>
+    <md-option *ngFor="let option of staticLookupsService.orderableOptions" [value]="option.value">
+      {{option.text}}
+    </md-option>
+  </md-select>
+
+  <md-select formControlName="status" placeholder="Status" id="status" color="accent">
+    <md-option></md-option>
+    <md-option *ngFor="let option of staticLookupsService.statusOptions" [value]="option.value">
+      {{option.text}}
+    </md-option>
+  </md-select>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+  <span id="errorMessage">{{errorMessage}}</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <md-progress-spinner mode="indeterminate" color="accent" *ngIf="!gridConfigLoaded && !errorMessage">
+  </md-progress-spinner>
+</div>

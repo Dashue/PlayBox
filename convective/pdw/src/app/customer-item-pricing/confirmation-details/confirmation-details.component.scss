@@ -1,0 +1,79 @@
+@import '../../shared/breakpoints';
+@import '../../shared/theming';
+
+md-card {
+  padding: 0;
+
+  .detailRow {
+    padding: 0 16px;
+
+    label {
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .value {
+      margin-right: 16px;
+      text-align: end;
+    }
+  }
+  ul {
+    margin: 0;
+    padding-bottom: 16px;
+  }
+  md-toolbar {
+    margin-bottom: 16px;
+  }
+
+  &.progressCard {
+    height: 520px;
+  }
+  &.errorMessageContainer {
+    md-toolbar {
+      margin-bottom: 0;
+    }
+    .errorMessage {
+      padding: 48px;
+      background-color: mat-color($app-warn, 50);
+    }
+  }
+}
+@include breakpoint($large-handset) {
+  md-card {
+    margin: 16px 24px 16px 24px;
+    max-width: 800px;
+
+    .detailRow {
+      padding: 0;
+
+      label:not(.comments) {
+        text-align: end;
+      }
+      .value {
+        text-align: start;
+      }
+
+      &:not(.topSection):not(.commentsSection) {
+        label {
+          width: 144px;
+        }
+        .value {
+          width: 72px;
+        }
+      }
+
+      &.topSection {
+        label {
+          width: 120px;
+        }
+        .value {
+          width: 300px;
+        }
+      }
+    }
+    &.progressCard {
+      height: 336px;
+      max-width: 800px;
+    }
+  }
+}

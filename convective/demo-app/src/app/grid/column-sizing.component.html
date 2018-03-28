@@ -1,0 +1,27 @@
+<md-card fxFlex="100" fxFlex.gt-sm="60">
+  <md-card-content fxLayout="row" fxLayoutWrap>
+    <wj-flex-grid #grid [itemsSource]="data">
+      <wj-flex-grid-column [header]="'Country'" [binding]="'country'" [width]="'*'"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Date'" [binding]="'date'" [width]="50"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Revenue'" [binding]="'amount'" [format]="'n0'"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Active'" [binding]="'active'"></wj-flex-grid-column>
+    </wj-flex-grid>
+    <form [formGroup]="widthForm" fxLayout="row">
+      <md-input-container color="accent">
+        <input mdInput type="number" formControlName="index" placeholder="Index" min="0"/>
+      </md-input-container>
+      <md-input-container color="accent">
+        <input mdInput type="number" formControlName="width" placeholder="Width" min="0"/>
+      </md-input-container>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button color="primary" (click)="getColumnWidths()">Show Widths</button>
+    <button md-button color="accent"
+            (click)="setColumnWidth(widthForm.controls.index.value, widthForm.controls.width.value)">
+      Set Width
+    </button>
+  </md-card-actions>
+</md-card>
+<span fxFlex="40" fxflex.lt-md="0"></span>
+<p id="results" *ngIf="widths">{{widths}}</p>

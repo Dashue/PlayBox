@@ -1,0 +1,31 @@
+.saveConfigurationDialog {
+  .mat-dialog-container {
+    padding: 24px 0 0;
+
+    hfc-save-grid-config-confirmation {
+      display: flex;
+      flex-direction: column;
+    }
+    [md-dialog-title],
+    md-dialog-content {
+      padding: 0 24px;
+    }
+    md-dialog-content {
+      md-select {
+        margin: 16px 0;
+      }
+    }
+    md-dialog-actions {
+      padding: 8px;
+
+      .mat-button {
+        padding: 0 8px;
+        min-width: 64px;
+
+        &:nth-child(even) {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

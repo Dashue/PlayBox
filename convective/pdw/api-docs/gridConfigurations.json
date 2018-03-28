@@ -1,0 +1,318 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Grid Configurations API",
+    "description": "Grid Configurations API Specification",
+    "version": "0.0.2",
+    "x-projectname": "hfcservices_gridconfig"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/gridConfigurations": {
+      "get": {
+        "summary": "Get configurations for a specific grid",
+        "description": "Returns data required to configure a grid in terms of looks and functionality.",
+        "operationId": "getConfigurationsByGridName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "gridName",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Name of grid used to filter grid configurations"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grid configurations returned",
+            "schema": {
+              "$ref": "#/definitions/getGridConfigResponse"
+            }
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/responses/ResourceNotFound"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a new configuration for a grid",
+        "description": "Creates a new configuration containing everything pertaining the the looks and functionality of a grid.",
+        "operationId": "createGridConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "New grid configuration object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gridConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Grid configuration created",
+            "schema": {
+              "$ref": "#/definitions/gridConfig"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/gridConfigurations/{id}": {
+      "put": {
+        "summary": "Update grid configuration",
+        "description": "Updates an existing grid configuration",
+        "operationId": "updateGridConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Modified grid configuration object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gridConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grid configuration updated",
+            "schema": {
+              "$ref": "#/definitions/gridConfig"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/responses/ResourceNotFound"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete grid configuration",
+        "description": "Deletes an existing grid configuration",
+        "operationId": "deleteGridConfig",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Grid configuration deleted"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/responses/ResourceNotFound"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "ResourceNotFound": {
+      "description": "The specified resource could not be found"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "definitions": {
+    "getGridConfigResponse": {
+      "type": "object",
+      "properties": {
+        "configs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gridConfig"
+          }
+        },
+        "defaultPreferenceId": {
+          "type": "integer"
+        },
+        "gridId": {
+          "type": "integer"
+        },
+        "gridName": {
+          "type": "string"
+        }
+      }
+    },
+    "gridConfig": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/columnConfig"
+          }
+        },
+        "gridName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Grid Config id"
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "Indicate if this is the users default config"
+        },
+        "name": {
+          "type": "string"
+        },
+        "temporaryConfiguration": {
+          "type": "boolean"
+        },
+        "searchConfig": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/searchConfig"
+          },
+          "description": "Information pertaining to the active search"
+        },
+        "showSearch": {
+          "type": "boolean",
+          "description": "Indicate the default expanded/collapsed state of the search panel"
+        },
+        "sortConfig": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/sortConfig"
+          },
+          "description": "Configuration of column sorting"
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "Number of rows to display"
+        }
+      }
+    },
+    "columnConfig": {
+      "type": "object",
+      "properties": {
+        "cellAlignment": {
+          "type": "string"
+        },
+        "dataType": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isSortable": {
+          "type": "boolean",
+          "description": "Controls whether the grid should allow sorting on the column"
+        },
+        "name": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "description": "The order in which a column should be displayed in the grid"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "integer"
+        }
+      }
+    },
+    "searchConfig": {
+      "type": "object",
+      "properties": {
+        "columnName": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sortConfig": {
+      "type": "object",
+      "properties": {
+        "columnId": {
+          "type": "integer"
+        },
+        "sortDirection": {
+          "type": "string",
+          "enum": [
+            "ASC",
+            "DSC"
+          ]
+        },
+        "sortOrder": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

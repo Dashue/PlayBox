@@ -1,0 +1,77 @@
+<div id="container" fxLayout="column">
+  <form [formGroup]="searchForm" novalidate>
+    <h3>Search</h3>
+    <div id="search-container" fxLayout="column" fxLayout.gt-xs="row" fxLayoutWrap.gt-xs>
+      <div fxLayout="row" fxFlex.xs="50" fxFlex.gt-xs="30">
+        <label for="itemNumber" style="margin-top: 16px;" [style.xs]="{'width': '90px'}">Item:</label>
+        <md-input-container fxFlex dividerColor="primary">
+          <input id="itemNumber" mdInput [mdAutocomplete]="auto" formControlName="itemsCtrl">
+        </md-input-container>
+
+        <md-autocomplete #auto="mdAutocomplete">
+          <md-option *ngFor="let item of filteredItems | async" [value]="item.id">
+            {{ item.id }}
+          </md-option>
+        </md-autocomplete>
+      </div>
+      <div fxLayout="row" fxFlex.xs="50" fxFlex.gt-xs="30">
+        <label for="itemDescription" style="margin-top: 16px; width: 90px">Description:</label>
+        <md-input-container fxFlex dividerColor="primary">
+          <input id="itemDescription" mdInput formControlName="descriptionFilter">
+        </md-input-container>
+      </div>
+      <div class="formSelect" fxLayout="row" fxFlex.xs="50" fxFlex.gt-xs="30">
+        <label>Pricing Unit:</label>
+        <md-select fxFlex formControlName="pricingUnitFilter">
+          <md-option *ngFor="let unit of pricingUnits" [value]="unit">
+            {{ unit }}
+          </md-option>
+        </md-select>
+      </div>
+      <md-checkbox formControlName="orderableFilter">Orderable</md-checkbox>
+      <md-checkbox formControlName="activeFilter">Active</md-checkbox>
+      <div fxLayout="row" class="search-button-container" [style.xs]="{'margin-top': '16px'}">
+        <button md-button type="button" color="warn" fxFlex (click)="resetForm()">RESET</button>
+        <button md-button type="submit" color="primary" fxFlex (click)="executeSearch()">SEARCH</button>
+      </div>
+    </div>
+  </form>
+
+  <md-card id="grid-container" fxLayout="row">
+    <div [style.xs]="{'width': 'calc(100vw - 32px)'}">
+      <wj-flex-grid #grid [itemsSource]="collectionView">
+        <wj-flex-grid-column
+          [header]="'Number'" [binding]="'id'" [width]="'*'" [minWidth]="60" [maxWidth]="100">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column
+          [header]="'Description'" [binding]="'description'" [width]="'*'" [minWidth]="280" [maxWidth]="500">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column
+          [header]="'Orderable'" [binding]="'orderable'" [width]="'*'" [minWidth]="60" [maxWidth]="90">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column
+          [header]="'Pricing Unit'" [binding]="'pricingUnit'" [width]="'*'" [minWidth]="60" [maxWidth]="110">
+        </wj-flex-grid-column>
+        <wj-flex-grid-column
+          [header]="'Status'" [binding]="'status'" [width]="'*'" [minWidth]="70" [maxWidth]="130">
+        </wj-flex-grid-column>
+      </wj-flex-grid>
+      <div fxLayout="row" fxLayoutAlign="end center" class="tablePager">
+        <span><label>Rows per page:</label></span>
+        <md-select (change)="pageSizeChange($event)">
+          <md-option value="5">5</md-option>
+          <md-option value="10">10</md-option>
+          <md-option value="25">25</md-option>
+          <md-option value="50" fxHide.xs>50</md-option>
+        </md-select>
+        <span id="pageInfo">
+          {{ collectionView.pageIndex * collectionView.pageSize }}-{{ (collectionView.pageIndex * collectionView.pageSize) + collectionView.pageSize }}
+          of {{ collectionView.totalItemCount }}
+        </span>
+        <button md-icon-button id="previousPage" (click)="previousPage()" color="primary"><md-icon>chevron_left</md-icon></button>
+        <button md-icon-button id="nextPage" (click)="nextPage()" color="primary"><md-icon>chevron_right</md-icon></button>
+      </div>
+    </div>
+    <md-spinner *ngIf="searchInProgress" [style.xs]="{'width': 'calc(100vw - 32px)'}"></md-spinner>
+  </md-card>
+</div>

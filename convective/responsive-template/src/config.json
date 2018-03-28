@@ -1,0 +1,23 @@
+{
+  "appName": "Template Application",
+  "logoPath": "assets/1200px-Hormel_logo.png",
+  "applicationId": "RESPTEMP",
+  "maintenanceGrids": [
+    {"groupName": "General", "grids": [
+      {"name": "Location Grid", "id": "locationGrid",
+        "readRole": "RESPTEMP_LOCATION_READ",
+        "editRole": "RESPTEMP_LOCATION_EDIT",
+        "exportRole": "RESPTEMP_LOCATION_DOWNLOAD",
+        "primaryKey": "locationId"
+      }
+    ]}
+  ],
+  "navItems": [
+    {
+      "name": "Maintenance", "iconName": "grid_on", "route": "/maintenance",
+      "requiredRoles": ["RESPTEMP_MAINTENANCE"],
+      "children": []
+    }
+  ],
+  "roleToChangeDefaultSelection": "RESPTEMP_CHANGE_DEFAULT_SELECTION"
+}

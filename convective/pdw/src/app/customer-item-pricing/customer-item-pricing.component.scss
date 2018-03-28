@@ -1,0 +1,12 @@
+@import '../shared/breakpoints';
+@import '../shared/theming';
+
+@include breakpoint($large-handset) {
+  .container {
+    margin: 16px 24px 16px;
+
+    hfc-customer-item-report {
+      margin-top: 8px;
+    }
+  }
+}

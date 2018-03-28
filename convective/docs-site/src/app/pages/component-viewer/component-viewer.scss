@@ -1,0 +1,33 @@
+@import '../../../styles/constants';
+
+app-component-viewer {
+  font-weight: 400;
+  padding: 20px $content-padding-side 50px;
+
+  @media ($mat-xsmall) {
+    padding-left: $content-padding-side-xs;
+    padding-right: $content-padding-side-xs;
+  }
+}
+
+.docs-component-viewer {
+  margin: 0 auto;
+  max-width: 940px;
+}
+
+.docs-component-viewer-section-tab {
+  text-transform: uppercase;
+}
+
+.docs-component-viewer-tabbed-content {
+  margin-bottom: 50px;
+}
+
+.docs-component-viewer-content {
+  min-height: 500px;
+}
+
+.docs-example-source {
+  padding: 0 0 10px 30px;
+  min-height: 150px;
+}

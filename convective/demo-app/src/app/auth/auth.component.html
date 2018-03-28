@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start center" fxFlex>
+  <img [src]="navService.logoPath" width="300">
+  <md-input-container color="accent">
+    <input mdInput id="username" formControlName="username" placeholder="Username">
+  </md-input-container>
+  <md-input-container color="accent">
+    <input mdInput id="password" type="password" formControlName="password" placeholder="Password">
+  </md-input-container>
+  <button md-raised-button (click)="login()" color="accent">Login</button>
+  <div class="errorMessage" fxLayout="column" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</form>

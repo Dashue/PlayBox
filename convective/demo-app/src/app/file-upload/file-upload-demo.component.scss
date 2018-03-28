@@ -1,0 +1,12 @@
+@import '../shared/breakpoints';
+
+@include breakpoint($large-handset) {
+  #file-upload {
+    margin: 16px 16px 12px 16px;
+  }
+}
+@include breakpoint($large-desktop) {
+  #file-upload {
+    margin: 16px 36px 16px 36px;
+  }
+}

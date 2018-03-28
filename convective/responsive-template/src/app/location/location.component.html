@@ -1,0 +1,10 @@
+<div class="container" fxLayout="row" fxLayoutWrap>
+  <hfc-search-panel fxLayout="row" fxLayoutAlign="start center" fxFlex="100"
+                    [title]="searchFormTitle" [expanded]="searchPanelExpanded">
+    <hfc-location-search-form #content (formData)="onFormData($event)" fxFlex="100">
+    </hfc-location-search-form>
+  </hfc-search-panel>
+  <hfc-grid tableName="locationGrid" [instanceService]="gridInstanceService" [allowExport]="allowExport"
+            fxFlex="100" [isReadOnly]="isReadOnly" [allowSaveSelection]="true" [primaryKey]="primaryKey">
+  </hfc-grid>
+</div>

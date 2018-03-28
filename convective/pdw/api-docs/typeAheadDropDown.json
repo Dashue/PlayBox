@@ -1,0 +1,133 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Type Ahead Drop Down API",
+    "description": "Type Ahead & Drop Down API Specification",
+    "version": "0.0.1",
+    "x-projectname": "OPPDW_typeAheadDropDown"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/apps/OPPDW/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/typeAheadDropDown": {
+      "get": {
+        "summary": "Get data for a Type Ahead or Drop Down Field",
+        "description": "Returns data for input fields based on parameters.",
+        "operationId": "getTypeAheadDropDown",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataTypeKey",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Specific data type requested from database"
+          },
+          {
+            "name": "inputField",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "For a Type Ahead this would represent the field the user is typing in.  (Options fieldDescription, fieldKey, fieldId)"
+          },
+          {
+            "name": "inputValue",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Input data from screen the user is typing in."
+          },
+          {
+            "name": "recordsReturned",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Limits the number of records returned"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Query results returned",
+            "schema": {
+              "$ref": "#/definitions/typeAheadDropDownResponse"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "typeAheadDropDownResponse": {
+      "type": "object",
+      "required": [
+        "data",
+        "total"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/typeAheadDropDownRecord"
+          }
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "typeAheadDropDownRecord": {
+      "type": "object",
+      "required": [
+        "fieldKey",
+        "fieldDescription",
+        "fieldDisplayText"
+      ],
+      "properties": {
+        "fieldId": {
+          "type": "string"
+        },
+        "fieldKey": {
+          "type": "string"
+        },
+        "fieldDescription": {
+          "type": "string"
+        },
+        "fieldDisplayText": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

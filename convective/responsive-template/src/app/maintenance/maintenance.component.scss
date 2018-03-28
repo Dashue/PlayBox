@@ -1,0 +1,48 @@
+@import '../shared/breakpoints';
+
+#maintenanceSelector {
+  padding: 4px 24px 0 24px;
+
+  mat-select {
+    max-width: 154px;
+  }
+  label {
+    margin-right: 8px;
+    min-width: 95px;
+  }
+}
+hfc-search-panel {
+  margin: 16px 0 8px 0;
+}
+@include breakpoint($handset) {
+  #maintenanceSelector {
+    mat-select {
+      max-width: 220px;
+    }
+  }
+}
+@include breakpoint($large-handset) {
+  #maintenanceSelector {
+    margin: 4px 24px 0 24px;
+  }
+  hfc-search-panel {
+    margin: 16px 24px 16px 24px;
+    width: calc(100vw - 48px);
+  }
+}
+@include breakpoint($tablet) {
+  #maintenanceSelector {
+    mat-select {
+      max-width: 300px;
+    }
+  }
+}
+@include breakpoint($large-desktop) {
+  #maintenanceSelector {
+    margin: 4px 44px 0 44px;
+  }
+  hfc-search-panel {
+    margin: 16px 36px 16px 36px;
+    width: calc(100vw - 72px);
+  }
+}

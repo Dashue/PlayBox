@@ -1,0 +1,184 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Confirmations API",
+    "description": "Confirmations API Specification",
+    "version": "0.0.1",
+    "x-projectname": "oppdw_confirmations"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/apps/OPPDW/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/confirmations/{confirmationNumber}": {
+      "get": {
+        "summary": "Get item pricing information from a confirmation",
+        "description": "Return item pricing information for a single item from a confirmation. A confirmation may contain multiple items.",
+        "operationId": "getConfirmation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "confirmationNumber",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Confirmation number to lookup"
+          },
+          {
+            "name": "item",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Specify the itemId for the item in the confirmation that data should be returned for"
+          },
+        ],
+        "responses": {
+          "201": {
+            "description": "Item pricing information returned",
+            "schema": {
+              "$ref": "#/definitions/confirmationItemPricing"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/responses/ResourceNotFound"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "ResourceNotFound": {
+      "description": "The specified resource could not be found"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "confirmationItemPricing": {
+      "type": "object",
+      "required": [
+        "confirmationNumber",
+        "startDate",
+        "endDate",
+        "maxQuantity",
+        "minQuantity"
+      ],
+      "properties": {
+        "confirmationNumber": {
+          "type": "integer",
+          "description": "Confirmation Number"
+        },
+        "customerNumber": {
+          "type": "integer",
+          "description": "Customer Number"
+        },
+        "outletNumber": {
+          "type": "string",
+          "description": "Sales outlet number"
+        },
+        "bracketAddon": {
+          "type": "boolean",
+          "description": "If there is a bracket addon (Display as Yes/No)"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of confirmation (YYYY-MM-DD)"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of confirmation (YYYY-MM-DD)"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Comments applied to confirmation during approval process"
+          }
+        },
+        "maxQuantity": {
+          "type": "integer",
+          "description": "Maximum quantity the customer can order for the confirmation to be applied"
+        },
+        "minQuantity": {
+          "type": "integer",
+          "description": "Minimum quantity the customer must order for the confirmation to be applied"
+        },
+        "orderedQty": {
+          "type": "integer",
+          "description": "Total number ordered and applied to confirmation to date"
+        },
+        "price": {
+          "type": "number",
+          "description": "Item price given per qty ordered (Display with 4 Decimals)"
+        },
+        "allowance": {
+          "type": "string",
+          "description": "Item price allowance per qty ordered (Display with 4 Decimals)"
+        },
+        "regionApprovStat": {
+          "type": "string",
+          "description": "Regional Manager approval status",
+          "enum": [
+            "",
+            "APV ",
+            "REG ",
+            "DNY ",
+            "PM "
+          ]
+        },
+        "prdmgrApprovStat": {
+          "type": "string",
+          "description": "Product Manager approval status",
+          "enum": [
+            "",
+            "APV ",
+            "REG ",
+            "DNY ",
+            "PM "
+          ]
+        },
+        "prcadmApprovStat": {
+          "type": "string",
+          "description": "Pricing Administrator approval status",
+          "enum": [
+            "",
+            "APV ",
+            "REG ",
+            "DNY ",
+            "PM "
+          ]
+        }
+      }
+    }
+  }
+}

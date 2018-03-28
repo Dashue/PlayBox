@@ -1,0 +1,29 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap *ngIf="!isLoadingActiveSearch && !errorMessage"
+      (keyup.enter)="submit()">
+  <hfc-autocomplete [parentForm]="form" idControlName="key"
+                    descriptionControlName="description"
+                    idPlaceholder="Location" descriptionPlaceholder="Location Description"
+                    [idOptions]="filteredKeyOptions | async" [hideLookup]="true"
+                    [descriptionOptions]="filteredDescriptionOptions | async">
+  </hfc-autocomplete>
+
+  <mat-form-field dividerColor="accent">
+    <input matInput [matDatepicker]="effectiveDatePicker" placeholder="Effective Date"
+           formControlName="effectiveDate" type="search">
+    <mat-datepicker-toggle matSuffix [for]="effectiveDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #effectiveDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-select placeholder="Status" formControlName="status">
+    <mat-option *ngFor="let option of staticLookupsService.statusOptions" [value]="option.value">
+      {{ option.text }}
+    </mat-option>
+  </mat-select>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+  <span id="errorMessage">{{errorMessage}}</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-progress-spinner mode="indeterminate" color="accent" *ngIf="isLoadingActiveSearch && !errorMessage">
+  </mat-progress-spinner>
+</div>

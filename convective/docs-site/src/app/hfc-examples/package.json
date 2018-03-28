@@ -1,0 +1,22 @@
+{
+  "name": "hfc-examples",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "HFC Examples",
+  "main": "./bundles/hfc-examples.umd.js",
+  "module": "./@angular/hfc-examples.es5.js",
+  "es2015": "./@angular/hfc-examples.js",
+  "typings": "./hfc-examples.d.ts",
+  "private": true,
+  "keywords": [
+    "angular",
+    "components"
+  ],
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "@angular/common": "^4.0.0",
+    "@angular/http": "^4.0.0"
+  },
+  "dependencies": {
+    "tslib": "^1.7.1"
+  }
+}

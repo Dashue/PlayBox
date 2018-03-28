@@ -1,0 +1,126 @@
+swagger: '2.0'
+
+info:
+  version: "0.0.1"
+  title: Price Data Warehouse - Items
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /items:
+    get:
+      description: |
+        Gets a list of `Item` objects.
+        Optional query param of **limit** determines limit of returned array.
+      parameters:
+        - name: limit
+          in: query
+          description: Page size
+          required: false
+          type: number
+          format: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ArrayOfItems
+            type: array
+            items:
+              $ref: '#/definitions/Item'
+    post:
+      description: |
+        Creates a new `Item`.
+      parameters:
+        - name: item
+          in: body
+          description: Item to create
+          required: true
+          schema:
+            $ref: '#/definitions/NewItem'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Item'
+  /items/{id}:
+    get:
+      description: |
+        Gets an `Item` by ID.
+      parameters:
+        - name: id
+          in: path
+          description: ID of Item to use
+          required: true
+          type: number
+          format: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Item'
+    put:
+      description: |
+        Updates an `Item` by ID.
+      parameters:
+        - name: id
+          in: path
+          description: ID of Item to use
+          required: true
+          type: number
+          format: integer
+        - name: item
+          in: body
+          description: Item to update
+          required: true
+          schema:
+            $ref: '#/definitions/NewItem'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Item'
+    delete:
+      description: |
+        Removes an `Item` by ID.
+      parameters:
+        - name: id
+          in: path
+          description: ID of Item to remove
+          required: true
+          type: number
+          format: integer
+      responses:
+        200:
+          description: Successful response
+
+definitions:
+  Item:
+    type: object
+    properties:
+      id:
+        type: number
+      description:
+        type: string
+      orderable:
+        type: boolean
+      pricingUnit:
+        type: string
+      status:
+        type: string
+  NewItem:
+    type: object
+    required:
+      ['description', 'orderable', 'pricingUnit', 'status']
+    properties:
+      description:
+        type: string
+      orderable:
+        type: boolean
+      pricingUnit:
+        type: string
+      status:
+        type: string

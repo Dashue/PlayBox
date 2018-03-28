@@ -1,0 +1,21 @@
+<md-card fxFlex="100" fxFlex.gt-sm="60">
+  <md-card-content fxLayout="row" fxLayoutWrap>
+    <p>Please drag columns to re-order, alternative click the 'Switch ordering' button below.</p>
+    <wj-flex-grid #grid [itemsSource]="data">
+      <wj-flex-grid-column [header]="'Country'" [binding]="'country'"
+                           [width]="'*'"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Date'" [binding]="'date'"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Revenue'" [binding]="'amount'"
+                           [format]="'n0'"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Active'" [binding]="'active'"></wj-flex-grid-column>
+    </wj-flex-grid>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button color="accent" (click)="getColumnOrdering()">Show Ordering</button>
+    <button md-button color="primary" (click)="moveColumn(0, 1)">
+      Switch ordering of column 1 and 2
+    </button>
+  </md-card-actions>
+</md-card>
+<span fxFlex="40" fxFlex.lt-md="0"></span>
+<p id="results" *ngIf="ordering">{{ordering}}</p>

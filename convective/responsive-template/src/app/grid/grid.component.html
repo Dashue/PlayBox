@@ -1,0 +1,181 @@
+<mat-card id="grid-container" [style.visibility]="showGridContainer ? 'visible' : 'hidden'">
+  <mat-card-header fxLayout="row" fxLayoutAlign="start center">
+
+    <div class="grid-options-menu" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item color="primary" (click)="toCreateRow()" *ngIf="showEditOptions">
+          <mat-icon>add</mat-icon>
+          <span>Create</span>
+        </button>
+        <button mat-menu-item color="primary" (click)="toEditRow()" [disabled]="!allowEditRow"
+                *ngIf="showEditOptions">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button mat-menu-item color="primary" [disabled]="!allowDeleteRow" (click)="deleteCurrentRow()"
+                *ngIf="showEditOptions">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+        <button mat-menu-item color="primary" (click)="openColumnPicker()">
+          <mat-icon>view_column</mat-icon>
+          <span>Pick Columns</span>
+        </button>
+        <button mat-menu-item color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+          <mat-icon>clear_all</mat-icon>
+          <span>Clear Sort</span>
+        </button>
+        <button mat-menu-item color="primary" (click)="requestExport()" *ngIf="allowExport">
+          <mat-icon>file_download</mat-icon>
+          <span>Export</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="icon-button-bar-overflow" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <span *ngIf="showEditOptions">
+        <button mat-icon-button color="primary" (click)="toCreateRow()"><mat-icon>add</mat-icon></button>
+        <span matTooltip="Select a row to enable editing">
+          <button class="editRowButton" mat-icon-button color="primary" (click)="toEditRow()"
+                  [disabled]="!allowEditRow">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </span>
+        <span matTooltip="Select a row to enable deleting">
+          <button class="deleteRowButton" mat-icon-button color="primary" [disabled]="!allowDeleteRow"
+                  (click)="deleteCurrentRow()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item color="primary" (click)="openColumnPicker()">
+            <mat-icon>view_column</mat-icon>
+            <span>Pick Columns</span>
+          </button>
+          <button mat-menu-item color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+              <mat-icon>clear_all</mat-icon>
+              <span>Clear Sort</span>
+            </button>
+          <button mat-menu-item color="primary" (click)="requestExport()" *ngIf="allowExport">
+              <mat-icon>file_download</mat-icon>
+              <span>Export</span>
+          </button>
+        </mat-menu>
+      </span>
+      <span *ngIf="!showEditOptions">
+        <button class="pickColumnsButton" mat-icon-button color="primary" (click)="openColumnPicker()"
+                matTooltip="Select visible columns">
+          <mat-icon>view_column</mat-icon>
+        </button>
+        <span matTooltip="Clear column sorting">
+          <button mat-icon-button color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+            <mat-icon>clear_all</mat-icon>
+          </button>
+        </span>
+      </span>
+      <span matTooltip="Export" *ngIf="allowExport">
+        <button mat-icon-button color="primary" (click)="requestExport()">
+          <mat-icon>file_download</mat-icon>
+        </button>
+      </span>
+    </div>
+
+    <div class="icon-button-bar" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <button mat-icon-button color="primary" (click)="toCreateRow()" *ngIf="showEditOptions">
+        <mat-icon>add</mat-icon>
+      </button>
+      <span matTooltip="Select a row to enable editing" *ngIf="showEditOptions">
+        <button class="editRowButton" mat-icon-button color="primary" (click)="toEditRow()"
+                [disabled]="!allowEditRow">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </span>
+      <span matTooltip="Select a row to enable deleting" *ngIf="showEditOptions">
+        <button class="deleteRowButton" mat-icon-button color="primary" [disabled]="!allowDeleteRow"
+                (click)="deleteCurrentRow()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+      <button class="pickColumnsButton" mat-icon-button color="primary" (click)="openColumnPicker()"
+              matTooltip="Select visible columns">
+        <mat-icon>view_column</mat-icon>
+      </button>
+      <span matTooltip="Clear column sorting">
+        <button mat-icon-button color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+          <mat-icon>clear_all</mat-icon>
+        </button>
+      </span>
+      <span matTooltip="Export" *ngIf="allowExport">
+        <button mat-icon-button color="primary" (click)="requestExport()">
+          <mat-icon>file_download</mat-icon>
+        </button>
+      </span>
+    </div>
+
+    <div class="button-bar" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <button mat-button color="primary" (click)="toCreateRow()" *ngIf="showEditOptions">Create</button>
+      <span matTooltip="Select a row to enable editing" *ngIf="showEditOptions">
+        <button class="editRowButton" mat-button color="primary" (click)="toEditRow()" [disabled]="!allowEditRow">
+          Edit
+        </button>
+      </span>
+      <span matTooltip="Select a row to enable deleting" *ngIf="showEditOptions">
+        <button class="deleteRowButton" mat-button color="primary" [disabled]="!allowDeleteRow"
+                (click)="deleteCurrentRow()">
+          Delete
+        </button>
+      </span>
+      <span matTooltip="Select visible columns">
+         <button class="pickColumnsButton" mat-button color="primary" (click)="openColumnPicker()">
+          Columns
+        </button>
+      </span>
+      <span matTooltip="Clear column sorting">
+        <button mat-button color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+          Clear Sort
+        </button>
+      </span>
+      <span matTooltip="Export" *ngIf="allowExport">
+        <button mat-button color="primary" (click)="requestExport()">
+          Export
+        </button>
+      </span>
+    </div>
+
+    <span fxFlex></span>
+    <hfc-grid-configuration [style.visibility]="allowSaveSelection && showGrid ? 'visible' : 'hidden'"
+                            [instanceService]="instanceService">
+    </hfc-grid-configuration>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="tableSpinnerContainer" fxLayout="row" fxLayoutAlign="center center" *ngIf="showLoader">
+      <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
+    </div>
+    <div class="noRecordsContainer" fxLayout="row" fxLayoutAlign="center center" *ngIf="showNoRecordsMessage">
+      <span>No records were found matching your search criteria.</span>
+    </div>
+    <div class="errorMessageContainer" *ngIf="showError">
+      The request failed: <strong>{{error}}</strong>
+    </div>
+    <wj-flex-grid [style.visibility]="showGrid ? 'visible' : 'hidden'" #grid [isReadOnly]="isReadOnly"
+                  [selectionMode]="'Row'" [showAlternatingRows]="true"></wj-flex-grid>
+
+    <div fxLayout="row">
+      <button id="select" mat-raised-button color="accent" (click)="onSelect()"
+              [style.visibility]="showSelectionButton ? 'visible' : 'hidden'" fxHide fxShow.gt-xs>
+        SELECT
+      </button>
+      <mat-paginator [style.visibility]="showGrid ? 'visible' : 'hidden'" [pageSizeOptions]="pageSizeOptions"
+                    [length]="numberOfRows"
+                    [pageSize]="pageSize" [pageIndex]="currentPageIndex"
+                    (page)="onPageChanged($event)" fxFlex>
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,22 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap *ngIf="gridConfigLoaded" (keyup.enter)="submit()">
+  <hfc-autocomplete
+    [parentForm]="form" [hideLookup]="true"
+    idControlName="brandKey"
+    descriptionControlName="brandDescription"
+    idPlaceholder="Brand"
+    descriptionPlaceholder="Brand Description"
+    [idOptions]="idFilteredOptions | async"
+    [descriptionOptions]="descriptionFilteredOptions | async">
+  </hfc-autocomplete>
+
+  <md-form-field color="accent">
+    <input mdInput formControlName="requestedBy" placeholder="Requested By" type="search">
+  </md-form-field>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+  <span id="errorMessage">{{errorMessage}}</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <md-progress-spinner mode="indeterminate" color="accent" *ngIf="!gridConfigLoaded && !errorMessage">
+  </md-progress-spinner>
+</div>

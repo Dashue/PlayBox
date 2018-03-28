@@ -1,0 +1,80 @@
+<div *ngIf="reportData" fxLayout="row" fxLayoutWrap>
+  <md-card class="customerPriceDetails" fxFlex="100">
+    <md-card-content fxLayout="row" fxLayoutWrap>
+      <div class="section" fxLayout="column">
+        <div fxLayout="row"><label>Address:</label>
+          <span class="value street">{{reportData.customerData.street}}</span>
+        </div>
+        <div fxLayout="row"><label>City:</label>
+          <span class="value">{{reportData.customerData.city}}</span>
+        </div>
+        <div fxLayout="row"><label>State:</label>
+          <span class="value">{{reportData.customerData.state}}</span>
+        </div>
+        <div fxLayout="row"><label>Zip:</label>
+          <span class="value">{{reportData.customerData.zipCode}}</span>
+        </div>
+      </div>
+      <div class="section" fxLayout="column">
+        <div fxLayout="row"><label>Price List:</label>
+          <span class="value">{{reportData.priceListData.priceList}}</span>
+        </div>
+        <div fxLayout="row"><label>Outlet:</label
+        ><span class="value">{{reportData.priceListData.outlet}}</span>
+        </div>
+        <div fxLayout="row"><label>Full Pallet Qty:</label>
+          <span class="value">{{reportData.priceListData.fullPalletQty}}</span>
+        </div>
+        <div fxLayout="row"><label>Pallet Layer Qty:</label>
+          <span class="value">{{reportData.priceListData.palletLayerQty}}</span>
+        </div>
+      </div>
+      <div class="section" fxLayout="column">
+        <div fxLayout="row"><label>Truckload Price:</label>
+          <span class="value">{{reportData.itemData.truckloadPrice}}</span>
+        </div>
+        <div fxLayout="row"><label>Leaker Allowance:</label>
+          <span class="value">{{reportData.itemData.leakerAllowance ? 'Yes' : 'No'}}</span>
+        </div>
+        <div fxLayout="row"><label>Pricing Unit:</label>
+          <span class="value">{{reportData.itemData.pricingUnit}}</span>
+        </div>
+        <div fxLayout="row"><label>Net Weight:</label>
+          <span class="value">{{reportData.itemData.netWeight}}</span>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+  <div *ngIf="reportData && reportData.pricing" fxFlex="100" fxLayout="row" fxLayoutWrap>
+    <div class="cardContainer" fxFlex.lt-md="100" fxFlex.md="50" fxFlex.gt-md="33.33"
+         *ngFor="let confirmation of reportData.pricing">
+      <md-card class="confirmationDetails">
+        <md-card-title *ngIf="confirmation.name">{{confirmation.name}}</md-card-title>
+        <md-card-title *ngIf="!confirmation.name" class="confirmationStatus">
+          {{confirmation.status | lowercase}} {{confirmation.confirmationId}}
+        </md-card-title>
+        <md-card-content
+          [ngStyle]="{'margin-bottom': (!confirmation.confirmationId || !itemKey) ? '36px' : '0px'}">
+          <div class="section" fxLayout="column">
+            <div fxLayout="row" *ngFor="let price of confirmation.priceList">
+              <label>{{price.name}}:</label><span class="value">{{price.value}}</span>
+            </div>
+          </div>
+        </md-card-content>
+        <md-card-actions fxLayoutAlign="end">
+          <button md-button color="accent" *ngIf="confirmation.confirmationId && itemKey"
+                  [routerLink]="['/customer-item-pricing/confirmations', confirmation.confirmationId, 'items', itemKey]"
+                  [queryParams]="{customerDescription: customerDescription.trim(), itemNumber: itemKey, itemDescription: itemDescription.trim(), effectiveDate: effectiveDate}">
+            View Details
+          </button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+</div>
+<div id="errorMessage" *ngIf="errorMessage">
+  An error occurred when retrieving the report data: <strong>{{errorMessage}}</strong>
+</div>
+<div *ngIf="!reportData && !errorMessage">
+  <md-progress-spinner mode="indeterminate" color="accent"></md-progress-spinner>
+</div>

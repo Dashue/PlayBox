@@ -1,0 +1,9 @@
+@import '../shared/theming';
+
+.drop-over{
+  padding: 20px;
+  border: 1px dotted mat-color($app-primary);
+}
+.drop-over-active{
+  border: 2px solid mat-color($app-primary);
+}

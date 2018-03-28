@@ -1,0 +1,31 @@
+<div class="container" fxLayout="row" fxLayoutWrap>
+  <hfc-search-panel fxLayout="row" fxLayoutAlign="start center" fxFlex="100"
+                    [title]="searchFormTitle" [expanded]="searchPanelExpanded">
+    <hfc-customer-item-pricing-search-form #content (formData)="onFormData($event)">
+    </hfc-customer-item-pricing-search-form>
+  </hfc-search-panel>
+  <div *ngIf="searchData && !searchData.itemId" fxFlex="100">
+    <hfc-sold-item-list fxFlex.xs="100" fxFlex.gt-xs="45" fxFlex.gt-md="30"
+                        (soldItemSelected)="onSoldItemSelected($event)"
+                        [customerId]="searchData.customerId" [effectiveDate]="effectiveDate">
+    </hfc-sold-item-list>
+    <hfc-customer-item-report *ngIf="showSoldItemReport" fxHide.xs
+                              [customerId]="searchData.customerId"
+                              [customerDescription]="searchData.customerDescription"
+                              [itemId]="selectedSoldItem.itemId" [itemKey]="selectedSoldItem.itemNumber"
+                              [itemDescription]="selectedSoldItem.description"
+                              [effectiveDate]="effectiveDate"
+                              [shipLocationId]="searchData.shipLocationId" style="margin-left: 8px"
+                              [priceBracketId]="searchData.priceBracketId" fxFlex>
+    </hfc-customer-item-report>
+  </div>
+  <hfc-customer-item-report *ngIf="showReport" fxFlex="100"
+                            [customerId]="searchData.customerId"
+                            [customerDescription]="searchData.customerDescription"
+                            [itemId]="searchData.itemId" [itemKey]="searchData.itemKey"
+                            [itemDescription]="searchData.itemDescription"
+                            [effectiveDate]="effectiveDate"
+                            [shipLocationId]="searchData.shipLocationId"
+                            [priceBracketId]="searchData.priceBracketId">
+  </hfc-customer-item-report>
+</div>

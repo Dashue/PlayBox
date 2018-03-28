@@ -1,0 +1,46 @@
+@import '../shared/breakpoints';
+@import '../shared/theming';
+
+.mat-toolbar {
+  img {
+    height: 80%;
+  }
+  .title {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @include breakpoint($large-handset) {
+    .title {
+      padding-right: 32px;
+    }
+  }
+}
+#userMenu {
+  display: none;
+  min-width: 0;
+
+  @include breakpoint($tablet) {
+    display: inherit;
+    text-transform: capitalize;
+  }
+}
+.environmentContainer {
+  font-size: 14px;
+  line-height: 16px;
+  color: mat-color($app-warn, 100);
+}
+.topNav {
+  margin-bottom: 3px;
+  .mat-button {
+    opacity: 0.5;
+    color: mat-color($app-primary, 900);
+
+    &.active {
+      opacity: 1;
+      color: mat-color($app-primary);
+    }
+  }
+}
+.mat-menu-item.active {
+  background-color: mat-color($app-primary, 100);
+}

@@ -1,0 +1,52 @@
+@import '../shared/breakpoints';
+
+#grid-container.mat-card {
+  padding: 0;
+  position: relative;
+  margin-right: auto;
+  width: 100vw;
+  md-card-content {
+    margin: 0 8px 8px 8px;
+  }
+  md-card-actions {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  md-card-header button {
+    margin-left: 14px;
+  }
+  .mat-icon-button {
+    &.editRowButton,
+    &.deleteRowButton,
+    &.pickColumnsButton {
+      margin-left: 14px;
+    }
+  }
+  #gridOptionsForm {
+    #saveOptionsButton {
+      margin-left: 0;
+    }
+    md-select {
+      width: 120px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+  wj-flex-grid {
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+@include breakpoint($large-handset) {
+  #grid-container.mat-card {
+    margin: 0 24px 16px;
+    width: calc(100vw - 48px);
+  }
+}
+
+@include breakpoint($large-desktop) {
+  #grid-container.mat-card {
+    margin: 0 36px 16px;
+    width: calc(100vw - 72px);
+  }
+}

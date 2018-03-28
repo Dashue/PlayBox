@@ -1,0 +1,100 @@
+@import '~@angular/material/theming';
+
+// Colors
+$hormel-light-tan: #f4f3ef;
+$hormel-tan: #a5a296;
+$hormel-dark-tan: #5e5a4e;
+$hormel-green: #008841;
+$hormel-red: #d84315;
+$hormel-dark-grey: #292a1d;
+$accent: $hormel-green;
+$light-background: white;
+$dark-background: $hormel-dark-grey;
+$light-text-color: white;
+$dark-text-color: $hormel-dark-grey;
+
+$hormel-green-palette: (
+  50: #e8f5e9,
+  100: #c8e6c9,
+  200: #a5d6a7,
+  300: #81c784,
+  400: #66bb6a,
+  500: #4caf50,
+  600: #43a047,
+  700: $hormel-green,
+  800: #2e7d32,
+  900: #1b5e20,
+  A100: #b9f6ca,
+  A200: #69f0ae,
+  A400: #00e676,
+  A700: #00c853,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$hormel-brown-palette: (
+  50: #efebe9,
+  100: $hormel-light-tan,
+  200: $hormel-tan,
+  300: #a1887f,
+  400: #8d6e63,
+  500: $hormel-dark-tan,
+  600: #6d4c41,
+  700: #5d4037,
+  800: #4e342e,
+  900: #3e2723,
+  A100: #d7ccc8,
+  A200: #bcaaa4,
+  A400: #8d6e63,
+  A700: #5d4037,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: white,
+    400: white,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: white,
+    A700: $white-87-opacity,
+  )
+);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker hue.
+$app-primary: mat-palette($hormel-brown-palette, 500, 200, 900);
+$app-accent: mat-palette($hormel-green-palette, 700, 600, 900);
+
+// The warn palette is optional (defaults to red).
+$app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component that you are using.
+@include angular-material-theme($app-theme);

@@ -1,0 +1,23 @@
+<label md-dialog-title>Save Grid Configuration</label>
+<md-dialog-content>
+  <form [formGroup]="form" fxLayout="row" fxLayoutWrap fxLayoutAlign="start center" fxFlex="100">
+    <md-select fxFlex="100" formControlName="selectedConfig" color="accent">
+      <md-option [value]="newConfig" (click)="selectNewConfig()">New...</md-option>
+      <md-option *ngFor="let config of configurations" [value]="config" (click)="selectConfig()">
+        {{getConfigDisplayName(config)}}
+      </md-option>
+    </md-select>
+   <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100" *ngIf="showNewConfig">
+    <md-form-field fxFlex="100" color="accent">
+      <input mdInput placeholder="Configuration Name" formControlName="newConfigName">
+    </md-form-field>
+  </div>
+    <md-checkbox fxFlex="100" fxLayoutAlign="start" formControlName="isUserDefault" color="accent">
+      Default
+    </md-checkbox>
+  </form>
+</md-dialog-content>
+<md-dialog-actions fxLayoutAlign="end center">
+  <button md-button color="accent" (click)="deleteConfiguration()" *ngIf="showDelete">DELETE</button>
+  <button md-button color="accent" (click)="close()">OK</button>
+</md-dialog-actions>

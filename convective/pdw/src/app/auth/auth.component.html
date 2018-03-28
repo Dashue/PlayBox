@@ -1,0 +1,14 @@
+<form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start center" fxFlex>
+  <img [src]="configService.logoPath" width="300">
+  <md-form-field color="accent">
+    <input mdInput id="username" formControlName="username" placeholder="Username">
+  </md-form-field>
+  <md-form-field color="accent">
+    <input mdInput id="password" type="password" formControlName="password" placeholder="Password">
+  </md-form-field>
+  <button md-raised-button (click)="login()" color="accent">Login</button>
+  <md-spinner *ngIf="loginInProgress" color="accent"></md-spinner>
+  <div class="errorMessage" fxLayout="column" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</form>

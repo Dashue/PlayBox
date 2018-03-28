@@ -1,0 +1,12 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap>
+  <md-input-container dividerColor="accent">
+    <input mdInput formControlName="key" placeholder="Key">
+  </md-input-container>
+  <md-input-container dividerColor="accent">
+    <input mdInput formControlName="description" placeholder="Description">
+  </md-input-container>
+  <md-select formControlName="status" placeholder="Status" color="accent">
+    <md-option value="Active">Active</md-option>
+    <md-option value="Inactive">Inactive</md-option>
+  </md-select>
+</form>

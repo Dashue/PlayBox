@@ -1,0 +1,56 @@
+@import './shared/theming';
+
+:host /deep/ {
+  .mat-ink-bar {
+    background-color: mat-color($app-primary);
+  }
+}
+
+mat-sidenav {
+  width: 260px;
+}
+mat-sidenav-container {
+  background-color: $light-background !important;
+  height: 100%;
+}
+.sidenav-toolbar {
+  height: 64px;
+  background-color: mat-color($app-primary);
+  display: flex;
+  flex-direction: row;
+
+  .environmentContainer {
+    padding-top: 4px;
+    font-size: 12px;
+    line-height: 14px;
+    color: mat-color($app-warn, 100);
+  }
+  #userName {
+    flex: 1 1 0%;
+    color: $light-text-color;
+    font-size: 14px;
+
+    mat-icon {
+      vertical-align: middle;
+      padding-bottom: 4px;
+      padding-left: 16px;
+    }
+
+    span {
+      padding: 0 16px 8px 4px;
+      text-transform: capitalize;
+    }
+  }
+
+  @media (max-width: 600px) {
+    height: 56px;
+  }
+}
+#logoutButton {
+  font-weight: 300;
+  color: $light-background;
+  align-self: flex-end;
+}
+mat-nav-list {
+  padding-top: 0;
+}

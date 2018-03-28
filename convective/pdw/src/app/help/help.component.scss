@@ -1,0 +1,20 @@
+@import '../shared/breakpoints';
+@import '../shared/theming';
+
+:host {
+  display: flex;
+}
+md-card {
+  width: 100%;
+}
+a {
+  color: mat-color($app-accent);
+  text-decoration: none;
+  font-size: 16px;
+}
+@include breakpoint($large-handset) {
+  md-card {
+    margin: 16px 24px 16px 24px;
+    max-width: 440px;
+  }
+}

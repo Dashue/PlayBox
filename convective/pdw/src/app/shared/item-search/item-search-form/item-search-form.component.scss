@@ -1,0 +1,30 @@
+@import '../../../shared/breakpoints';
+@import '../../../shared/theming';
+
+md-select {
+  width: 256px;
+  margin-right: 16px;
+}
+#pricingUnit,
+#orderable {
+  margin-bottom: 8px;
+}
+#priceList {
+  width: 292px;
+}
+#errorMessage {
+  background-color: mat-color($app-warn, 50);
+  padding: 64px;
+  width: 100%;
+}
+@include breakpoint($handset) {
+  md-select {
+    width: initial;
+  }
+}
+@include breakpoint($large-handset) {
+  #pricingUnit,
+  #orderable {
+    margin-bottom: 0;
+  }
+}

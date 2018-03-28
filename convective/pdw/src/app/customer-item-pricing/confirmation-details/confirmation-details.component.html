@@ -1,0 +1,97 @@
+<md-card *ngIf="confirmationDetails">
+  <md-card-content>
+    <md-toolbar color="accent">Confirmation {{confirmationDetails.confirmationNumber}}</md-toolbar>
+    <div fxLayout="column" fxLayoutAlign.gt-xs="center center">
+      <div class="detailRow topSection" fxLayout="row">
+        <label>Customer:</label>
+        <span class="value" fxFlex.xs>{{confirmationDetails.customerNumber}} - {{customerDescription}}</span>
+      </div>
+      <div class="detailRow topSection" fxLayout="row">
+        <label>Item:</label>
+        <span class="value" fxFlex.xs>{{itemNumber}} - {{itemDescription}}</span>
+      </div>
+      <div class="detailRow topSection" fxLayout="row" *ngIf="effectiveDate">
+        <label>Effective Date:</label>
+        <span class="value" fxFlex.xs>{{effectiveDate | date:'MM/dd/yyyy'}}</span>
+      </div>
+    </div>
+    <hr>
+    <div fxLayout.gt-xs="row" fxLayoutWrap.gt-xs fxLayout.xs="column" fxLayoutAlign.gt-xs="center center">
+      <div fxLayout="column" fxLayoutAlign.gt-xs="center center">
+        <div class="detailRow" fxLayout="row">
+          <label>Outlet:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.outletNumber}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Start Date:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.startDate | date:'MM/dd/yyyy'}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>End Date:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.endDate | date:'MM/dd/yyyy'}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Bracket Add On:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.bracketAddon ? 'Yes' : 'No'}}</span>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign.gt-xs="center center">
+        <div class="detailRow" fxLayout="row">
+          <label>Price:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.price}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Price Allowance:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.allowance}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Max Quantity:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.maxQuantity}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Min Quantity:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.minQuantity}}</span>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign.gt-xs="center center">
+        <div class="detailRow" fxLayout="row">
+          <label>Price Admin Status:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.prcadmApprovStat}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Regional Status:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.regionApprovStat}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Brand Manager Status:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.prdmgrApprovStat}}</span>
+        </div>
+        <div class="detailRow" fxLayout="row">
+          <label>Quantity Ordered:</label>
+          <span class="value" fxFlex.xs>{{confirmationDetails.orderedQty}}</span>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div fxLayout="column" fxLayoutAlign.gt-xs="start center">
+      <div class="detailRow commentsSection" fxLayout="row">
+        <label class="comments">Comments</label>
+      </div>
+      <ul>
+        <li *ngFor="let comment of confirmationDetails.comments">{{comment}}</li>
+      </ul>
+    </div>
+  </md-card-content>
+</md-card>
+<md-card *ngIf="requestInProgress" class="progressCard" fxLayout="column">
+  <md-toolbar color="accent"></md-toolbar>
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex>
+    <md-progress-spinner mode="indeterminate" color="accent"></md-progress-spinner>
+  </div>
+</md-card>
+<md-card class="errorMessageContainer" *ngIf="errorMessage">
+  <md-toolbar color="accent"></md-toolbar>
+  <md-card-content class="errorMessage">
+    The request for confirmation details failed: <strong>{{errorMessage}}</strong>
+  </md-card-content>
+</md-card>

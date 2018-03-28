@@ -1,0 +1,15 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <hfc-location-create-form *ngIf="tableName === 'locationGrid'"></hfc-location-create-form>
+    </mat-card-content>
+    <mat-card-footer fxLayoutAlign="end end">
+      <button mat-button color="warn" (click)="clear()">CLEAR</button>
+      <button mat-button color="warn" routerLink="/maintenance">CANCEL</button>
+      <button mat-button color="accent" (click)="save()">SAVE</button>
+    </mat-card-footer>
+  </mat-card>
+</div>

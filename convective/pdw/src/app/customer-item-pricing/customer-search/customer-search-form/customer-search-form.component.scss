@@ -1,0 +1,65 @@
+@import '../../../shared/breakpoints';
+@import '../../../shared/theming';
+
+.mat-form-field {
+  width: 256px;
+  margin-right: 16px;
+}
+#outletId {
+  width: 256px;
+}
+#outletDescription {
+  width: 256px;
+}
+md-select {
+  width: 256px;
+  margin-right: 16px;
+}
+#priceList {
+  width: 256px;
+  margin-bottom: 21px;
+}
+#zipCode {
+  margin-top: 22px;
+}
+.autoCompleteSeparator {
+  display: none;
+}
+#errorMessage {
+  background-color: mat-color($app-warn, 50);
+  padding: 64px;
+  width: 100%;
+}
+@include breakpoint(410px) {
+  #priceList {
+    width: 292px;
+  }
+  .mat-form-field,
+  md-select {
+    width: 167px;
+  }
+  #outletDescription {
+    width: 167px;
+  }
+  #outletId {
+    width: 100px;
+  }
+  #outletContainter {
+    margin-right: 16px;
+  }
+  .autoCompleteSeparator {
+    display: block;
+    margin-right: 16px;
+  }
+  #zipCode {
+    margin-top: 0;
+  }
+}
+@include breakpoint($large-handset) {
+  #priceList {
+    margin-bottom: 0;
+  }
+  #outletDescription {
+    width: 256px;
+  }
+}

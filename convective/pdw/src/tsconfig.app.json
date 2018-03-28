@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "mapRoot": "./",
+    "module": "amd",
+    "outDir": "../out-tsc/app"
+  }
+}

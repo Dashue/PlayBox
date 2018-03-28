@@ -1,0 +1,181 @@
+<md-card id="grid-container" [style.visibility]="showGridContainer ? 'visible' : 'hidden'">
+  <md-card-header fxLayout="row" fxLayoutAlign="start center">
+
+    <div class="grid-options-menu" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>settings</md-icon>
+      </button>
+      <md-menu #menu="mdMenu">
+        <button md-menu-item color="primary" routerLink="new" *ngIf="showEditOptions">
+          <md-icon>add</md-icon>
+          <span>Create New</span>
+        </button>
+        <button md-menu-item color="primary" routerLink="new" [disabled]="!allowEditRow"
+                *ngIf="showEditOptions">
+          <md-icon>edit</md-icon>
+          <span>Edit</span>
+        </button>
+        <button md-menu-item color="primary" [disabled]="!allowDeleteRow" (click)="deleteCurrentRow()"
+                *ngIf="showEditOptions">
+          <md-icon>delete</md-icon>
+          <span>Delete</span>
+        </button>
+        <button md-menu-item color="primary" (click)="openColumnPicker()">
+          <md-icon>view_column</md-icon>
+          <span>Pick Columns</span>
+        </button>
+        <button md-menu-item color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+          <md-icon>clear_all</md-icon>
+          <span>Clear Sort</span>
+        </button>
+        <button md-menu-item color="primary" (click)="requestExport()" *ngIf="allowExport">
+          <md-icon>file_download</md-icon>
+          <span>Export</span>
+        </button>
+      </md-menu>
+    </div>
+
+    <div class="icon-button-bar-overflow" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <span *ngIf="showEditOptions">
+        <button md-icon-button color="primary" routerLink="new"><md-icon>add</md-icon></button>
+        <span mdTooltip="Select a row to enable editing">
+          <button class="editRowButton" md-icon-button color="primary" routerLink="new"
+                  [disabled]="!allowEditRow">
+            <md-icon>edit</md-icon>
+          </button>
+        </span>
+        <span mdTooltip="Select a row to enable deleting">
+          <button class="deleteRowButton" md-icon-button color="primary" [disabled]="!allowDeleteRow"
+                  (click)="deleteCurrentRow()">
+            <md-icon>delete</md-icon>
+          </button>
+        </span>
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+        <md-menu #menu="mdMenu">
+          <button md-menu-item color="primary" (click)="openColumnPicker()">
+            <md-icon>view_column</md-icon>
+            <span>Pick Columns</span>
+          </button>
+          <button md-menu-item color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+              <md-icon>clear_all</md-icon>
+              <span>Clear Sort</span>
+            </button>
+          <button md-menu-item color="primary" (click)="requestExport()" *ngIf="allowExport">
+              <md-icon>file_download</md-icon>
+              <span>Export</span>
+          </button>
+        </md-menu>
+      </span>
+      <span *ngIf="!showEditOptions">
+        <button class="pickColumnsButton" md-icon-button color="primary" (click)="openColumnPicker()"
+                mdTooltip="Select visible columns">
+          <md-icon>view_column</md-icon>
+        </button>
+        <span mdTooltip="Clear column sorting">
+          <button md-icon-button color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+            <md-icon>clear_all</md-icon>
+          </button>
+        </span>
+      </span>
+      <span mdTooltip="Export" *ngIf="allowExport">
+        <button md-icon-button color="primary" (click)="requestExport()">
+          <md-icon>file_download</md-icon>
+        </button>
+      </span>
+    </div>
+
+    <div class="icon-button-bar" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <button md-icon-button color="primary" routerLink="new" *ngIf="showEditOptions">
+        <md-icon>add</md-icon>
+      </button>
+      <span mdTooltip="Select a row to enable editing" *ngIf="showEditOptions">
+        <button class="editRowButton" md-icon-button color="primary" routerLink="new"
+                [disabled]="!allowEditRow">
+          <md-icon>edit</md-icon>
+        </button>
+      </span>
+      <span mdTooltip="Select a row to enable deleting" *ngIf="showEditOptions">
+        <button class="deleteRowButton" md-icon-button color="primary" [disabled]="!allowDeleteRow"
+                (click)="deleteCurrentRow()">
+          <md-icon>delete</md-icon>
+        </button>
+      </span>
+      <button class="pickColumnsButton" md-icon-button color="primary" (click)="openColumnPicker()"
+              mdTooltip="Select visible columns">
+        <md-icon>view_column</md-icon>
+      </button>
+      <span mdTooltip="Clear column sorting">
+        <button md-icon-button color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+          <md-icon>clear_all</md-icon>
+        </button>
+      </span>
+      <span mdTooltip="Export" *ngIf="allowExport">
+        <button md-icon-button color="primary" (click)="requestExport()">
+          <md-icon>file_download</md-icon>
+        </button>
+      </span>
+    </div>
+
+    <div class="button-bar" [style.visibility]="showGrid ? 'visible' : 'hidden'">
+      <button md-button color="primary" routerLink="new" *ngIf="showEditOptions">Create New</button>
+      <span mdTooltip="Select a row to enable editing" *ngIf="showEditOptions">
+        <button class="editRowButton" md-button color="primary" routerLink="new" [disabled]="!allowEditRow">
+          Edit
+        </button>
+      </span>
+      <span mdTooltip="Select a row to enable deleting" *ngIf="showEditOptions">
+        <button class="deleteRowButton" md-button color="primary" [disabled]="!allowDeleteRow"
+                (click)="deleteCurrentRow()">
+          Delete
+        </button>
+      </span>
+      <span mdTooltip="Select visible columns">
+         <button class="pickColumnsButton" md-button color="primary" (click)="openColumnPicker()">
+          Columns
+        </button>
+      </span>
+      <span mdTooltip="Clear column sorting">
+        <button md-button color="primary" (click)="clearSort()" [disabled]="!showClearSort">
+          Clear Sort
+        </button>
+      </span>
+      <span mdTooltip="Export" *ngIf="allowExport">
+        <button md-button color="primary" (click)="requestExport()">
+          Export
+        </button>
+      </span>
+    </div>
+
+    <span fxFlex></span>
+    <hfc-grid-configuration [style.visibility]="allowSaveSelection && showGrid ? 'visible' : 'hidden'"
+                            [instanceService]="instanceService">
+    </hfc-grid-configuration>
+  </md-card-header>
+  <md-card-content>
+    <div class="tableSpinnerContainer" fxLayout="row" fxLayoutAlign="center center" *ngIf="showLoader">
+      <md-progress-spinner mode="indeterminate" color="accent"></md-progress-spinner>
+    </div>
+    <div class="noRecordsContainer" fxLayout="row" fxLayoutAlign="center center" *ngIf="showNoRecordsMessage">
+      <span>No records were found matching your search criteria.</span>
+    </div>
+    <div class="errorMessageContainer" *ngIf="showError">
+      The request failed: <strong>{{error}}</strong>
+    </div>
+    <wj-flex-grid [style.visibility]="showGrid ? 'visible' : 'hidden'" #grid [isReadOnly]="isReadOnly"
+                  [selectionMode]="'Row'" [showAlternatingRows]="true"></wj-flex-grid>
+
+    <div fxLayout="row">
+      <button id="select" md-raised-button color="accent" (click)="onSelect()"
+              [style.visibility]="showSelectionButton ? 'visible' : 'hidden'" fxHide fxShow.gt-xs>
+        SELECT
+      </button>
+      <md-paginator [style.visibility]="showGrid ? 'visible' : 'hidden'" [pageSizeOptions]="pageSizeOptions"
+                    [length]="numberOfRows"
+                    [pageSize]="pageSize" [pageIndex]="currentPageIndex"
+                    (page)="onPageChanged($event)" fxFlex>
+      </md-paginator>
+    </div>
+  </md-card-content>
+</md-card>

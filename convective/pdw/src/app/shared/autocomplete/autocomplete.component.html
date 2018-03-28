@@ -1,0 +1,37 @@
+<div class="hfcAutocompleteContainer" fxLayout="row" fxLayoutWrap fxLayoutAlign="start center"
+     [formGroup]="parentForm">
+  <div fxLayout="column">
+    <md-form-field dividerColor="accent" id="id">
+      <input mdInput [placeholder]="idPlaceholder" [mdAutocomplete]="idAutocomplete" type="search"
+             [formControlName]="idControlName">
+    </md-form-field>
+    <md-progress-bar id="idProgressBar" *ngIf="idLookupInProgress" mode="indeterminate" color="accent">
+    </md-progress-bar>
+    <md-autocomplete #idAutocomplete="mdAutocomplete" [displayWith]="idDisplayFn">
+      <md-option *ngFor="let option of idOptions" [value]="option">
+        {{option.fieldDisplayText}}
+      </md-option>
+    </md-autocomplete>
+  </div>
+  <span class="autoCompleteSeparator">-</span>
+  <div fxLayout="column">
+    <md-form-field dividerColor="accent" id="description"
+                        [ngStyle]="{'margin-right': hideLookup ? '16px' : '0'}">
+      <input mdInput [placeholder]="descriptionPlaceholder" [formControlName]="descriptionControlName"
+             [mdAutocomplete]="descriptionAutocomplete" type="search">
+    </md-form-field>
+    <md-progress-bar id="descriptionProgressBar" *ngIf="descriptionLookupInProgress" mode="indeterminate"
+                   color="accent"></md-progress-bar>
+    <md-autocomplete #descriptionAutocomplete="mdAutocomplete" [displayWith]="descriptionDisplayFn">
+      <md-option *ngFor="let option of descriptionOptions" [value]="option">
+        {{option.fieldDisplayText}}
+      </md-option>
+    </md-autocomplete>
+  </div>
+  <button md-icon-button (click)="searchClick.emit()" *ngIf="!hideLookup" color="primary" type="button">
+    <md-icon>search</md-icon>
+  </button>
+  <button md-button (click)="searchClick.emit()" *ngIf="!hideLookup" color="primary" type="button">
+    <md-icon>search</md-icon> {{idPlaceholder}} Search
+  </button>
+</div>

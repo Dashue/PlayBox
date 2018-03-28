@@ -1,0 +1,27 @@
+@import '../shared/breakpoints';
+@import '../shared/theming';
+
+:host {
+  flex-wrap: wrap;
+}
+
+#results {
+  background-color: mat-color($app-accent, 50);
+  margin: 16px 16px;
+  padding: 12px;
+}
+
+@include breakpoint($large-handset) {
+  :host {
+    margin: 16px 16px 12px 16px;
+  }
+}
+
+@include breakpoint($large-desktop) {
+  :host {
+    margin: 16px 36px 16px 36px;
+  }
+  #results {
+    margin: 24px 24px;
+  }
+}

@@ -1,0 +1,11 @@
+<form [formGroup]="gridOptionsForm" id="gridOptionsForm" fxLayout="row" fxLayoutAlign="center center"
+      *ngIf="configurations">
+  <button id="saveOptionsButton" md-icon-button color="primary" (click)="saveGridConfiguration()">
+    <md-icon>save</md-icon>
+  </button>
+  <md-select formControlName="selectedGridConfigName">
+    <md-option *ngFor="let item of configurations" [value]="item.name" (click)="selectConfiguration(item)">
+      {{item.name}} <span *ngIf="item.isUserDefault">(Default)</span>
+    </md-option>
+  </md-select>
+</form>

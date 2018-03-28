@@ -1,0 +1,282 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Items API",
+    "description": "Items API Specification",
+    "version": "0.0.2",
+    "x-projectname": "oppdw_items"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/apps/OPPDW/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/items": {
+      "get": {
+        "summary": "Get a list of items",
+        "description": "Returns items that fit the applied filters, sorting, search, and paging parameters.",
+        "operationId": "getItems",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Page number of result set to return"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Number of entries to return per request"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Grid fields to return in the response. Return all fields if missing or empty"
+          },
+          {
+            "name": "gridSortColumn",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Ordered and comma separated list of columns to sort by"
+          },
+          {
+            "name": "gridSortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Ordered and comma separated list of column sort directions"
+          },
+          {
+            "name": "restrictSearch",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "0",
+              "1"
+            ],
+            "description": "Restricted search filter (passed from gridConfig)"
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by product id"
+          },
+          {
+            "name": "itemDescription",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by item description"
+          },
+          {
+            "name": "orderableItem",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Y",
+              "N",
+              ""
+            ],
+            "description": "Filter by orderable item"
+          },
+          {
+            "name": "pricingUnit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CWT",
+              "CASE",
+              "EACH",
+              ""
+            ],
+            "description": "Filter by pricing unit"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              ""
+            ],
+            "description": "Filter by status"
+          },
+          {
+            "name": "gridName",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "gridName for grid user selection"
+          },
+          {
+            "name": "exportConfigurationID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "gridUserSelectionID of temp grid user selection for download"
+          },
+          {
+            "name": "outputType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Options include application/json,application/pdf,application/vnd.ms-excel"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Collection returned",
+            "schema": {
+              "$ref": "#/definitions/itemList"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/items/{id}": {
+      "get": {
+        "summary": "Get an item",
+        "description": "Get an item.",
+        "operationId": "getItem",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+                    {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id of item to return"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Item returned",
+            "schema": {
+              "$ref": "#/definitions/item"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/responses/ResourceNotFound"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "ResourceNotFound": {
+      "description": "The specified resource could not be found"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "itemList": {
+      "type": "object",
+      "required": [
+        "items", "page", "pageSize", "total"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        },
+        "page": {
+          "type": "integer",
+          "description": "Page number to display."
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": " Number of rows to display per page"
+        },
+        "total": {
+          "type": "integer",
+          "description": "Total number of rows found in search"
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": [
+        "mrProductMasterId",
+        "productId",
+        "description"
+
+      ],
+      "properties": {
+        "mrProductMasterId": {
+          "type": "string",
+          "description": "Primary Key from Master Item System"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Hormel Item Number (Ex 22144)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of product displayed on the box"
+        },
+        "pricingUnit": {
+          "type": "string",
+          "description": "Pricing Unit of Measure (ex CASE, EACH, CWT)"
+        },
+        "orderableItem": {
+          "type": "string",
+          "description": "Flag in Master Item System to determine if item can be used on an order (Y/N)"
+        }
+      }
+    }
+  }
+}

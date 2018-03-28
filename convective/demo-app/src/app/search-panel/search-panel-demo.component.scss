@@ -1,0 +1,38 @@
+@import '../shared/breakpoints';
+
+#formSelector {
+  padding: 16px 24px 0 24px;
+
+  md-select {
+    max-width: 300px;
+  }
+  label {
+    margin-right: 8px;
+    min-width: 95px;
+  }
+}
+#valuesCard {
+  margin: 16px 24px 0 24px;
+}
+
+#search-panel {
+  margin: 16px 0 8px 0;
+}
+
+@include breakpoint($large-handset) {
+  #search-panel {
+    margin: 16px 16px 12px 16px;
+  }
+}
+
+@include breakpoint($large-desktop) {
+  #formSelector {
+    margin: 16px 36px 16px 36px;
+  }
+  #search-panel {
+    margin: 16px 36px 16px 36px;
+  }
+  #valuesCard {
+    margin: 16px 36px 0 36px;
+  }
+}

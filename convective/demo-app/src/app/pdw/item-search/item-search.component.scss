@@ -1,0 +1,86 @@
+:host /deep/ {
+  #grid-container {
+    .tablePager {
+      md-select {
+        .mat-select-trigger {
+          min-width: 60px;
+        }
+        .mat-select-value {
+          padding-left: 8px;
+        }
+      }
+    }
+  }
+  .mat-card {
+    padding: 0;
+  }
+}
+
+#container {
+  margin: 0 16px;
+
+  h3 {
+    margin-bottom: 8px;
+  }
+}
+#search-container {
+  max-width: 1000px;
+
+  > * {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  label {
+    padding-right: 8px;
+  }
+  md-checkbox {
+    padding-top: 6px;
+  }
+}
+.search-button-container {
+  max-width: 642px;
+
+  button {
+    max-width: 180px;
+  }
+}
+#itemNumber {}
+.formSelect {
+  padding-bottom: 6px;
+  margin: 10px 0 8px 0;
+
+  label {
+    margin-top: 6px;
+    width: 90px;
+  }
+}
+
+#grid-container {
+  position: relative;
+  margin-top: 24px;
+  margin-right: auto;
+
+  .tablePager {
+    padding: 8px 0;
+
+    md-select {
+      margin: 0 16px;
+      width: 60px;
+    }
+    #pageInfo {
+      width: 80px;
+      text-align: center;
+    }
+  }
+  wj-flex-grid {
+    border-radius: 4px 4px 0 0;
+  }
+}
+md-spinner {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

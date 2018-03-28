@@ -1,0 +1,55 @@
+<mat-toolbar color="primary" class="mat-elevation-z1">
+  <button mat-icon-button id="menu" (click)="navService.openNav()" fxHide.gt-sm
+          *ngIf="authService.isLoggedIn && !navService.isBackEnabled">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-icon-button id="back" (click)="navService.goBack()" *ngIf="navService.isBackEnabled">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <img [src]="configService.logoPath" fxHide.xs *ngIf="authService.isLoggedIn">
+  <span class="title">{{navService.title}}</span>
+  <span fxFlex></span>
+  <div class="environmentContainer" fxLayout="column" fxLayoutAlign="center center"
+       *ngIf="environmentName !== 'Production' && !media.isActive('xs')">
+    <div>{{environmentName}} System</div>
+    <div>Data Not Live</div>
+  </div>
+  <div *ngIf="navService.showSelectItem" fxHide fxShow.xs>
+    <button mat-button (click)="selectItem()">SELECT</button>
+  </div>
+  <button mat-button id="userMenu" *ngIf="authService.isLoggedIn && authService.firstName"
+          [matMenuTriggerFor]="toolbarMenu" fxHide.lt-md>
+    {{authService.firstName | lowercase}}
+  </button>
+</mat-toolbar>
+<div *ngIf="authService.isLoggedIn" fxHide fxShow.gt-sm class="topNav mat-elevation-z1" fxLayout="row">
+  <span *ngFor="let item of navItems">
+    <span *ngIf="item.children.length > 0">
+      <button mat-button color="primary" [matMenuTriggerFor]="priceLookup">
+        {{item.name}}
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #priceLookup="matMenu" [overlapTrigger]="false">
+        <button *ngFor="let child of item.children" mat-menu-item [routerLink]="child.route"
+                [ngClass]="{'active': router.isActive(child.route, true)}">
+          <mat-icon>{{child.iconName}}</mat-icon>
+          <span>{{child.name}}</span>
+        </button>
+      </mat-menu>
+    </span>
+    <span *ngIf="item.children.length === 0">
+      <button mat-button color="primary" [routerLink]="item.route"
+              *ngIf="item.requiredRoles.length > 0 ? authService.isInRoles(item.requiredRoles) : true"
+              [ngClass]="{'active': router.isActive(item.route, true)}">
+        {{item.name}}
+      </button>
+    </span>
+  </span>
+</div>
+
+<mat-menu #toolbarMenu="matMenu" [overlapTrigger]="false">
+  <button mat-menu-item (click)="authService.logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

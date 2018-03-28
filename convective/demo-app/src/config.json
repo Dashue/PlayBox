@@ -1,0 +1,36 @@
+{
+  "appName": "Demo Application",
+  "logoPath": "assets/1200px-Hormel_logo.png",
+  "navItems": [
+    {"name": "Search Panel", "iconName": "search", "route": "/search-panel-demo", "children": []},
+    {"name": "File Upload", "iconName": "file_upload", "route": "/file-upload-demo", "children": []},
+    {"name": "Grid Demos", "iconName": "view_module",
+      "children": [
+        {
+          "name": "Column Ordering", "iconName":"view_carousel", "route":"/grid-demos/column-ordering",
+          "children": []
+        },
+        {
+          "name": "Column Sizing", "iconName":"view_array", "route":"/grid-demos/column-sizing",
+          "children": []
+        }
+      ]
+    },
+    {"name": "Maintenance", "iconName": "grid_on", "route": "/maintenance", "children": []},
+    {"name": "NOD/NOM", "iconName": "assignment_turned_in",
+      "children": [
+        {"name": "NOD/NOM", "iconName": "assignment_turned_in", "route": "/nodNom/nodNom", "children": []},
+        {"name": "In-Process", "iconName": "build",
+          "children": [
+            {
+              "name": "NOD/NOM", "iconName": "assignment_turned_in", "route": "/nodNom/nodNom/nodNom",
+              "children": []
+            },
+            {"name": "POP", "iconName": "new_releases", "route": "/nodNom/nodNom/pop", "children": []}
+          ]
+        }
+      ]
+    },
+    {"name": "Help", "iconName": "help_outline", "route": "/name", "children": []}
+  ]
+}

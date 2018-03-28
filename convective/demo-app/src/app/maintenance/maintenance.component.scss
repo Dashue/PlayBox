@@ -1,0 +1,47 @@
+@import '../shared/breakpoints';
+
+:host /deep/ {
+  .mat-select-placeholder,
+  .mat-select-trigger {
+    font-size: 14px;
+
+    .mat-floating-placeholder {
+      top: -18px !important;
+    }
+  }
+}
+
+#maintenanceSelector {
+  padding: 4px 24px 0 24px;
+
+  md-select {
+    max-width: 300px;
+  }
+  label {
+    margin-right: 8px;
+    min-width: 95px;
+  }
+}
+
+hfc-search-panel {
+  margin: 16px 0 8px 0;
+}
+
+@include breakpoint($large-handset) {
+  #maintenanceSelector {
+    margin: 4px 24px 0 24px;
+  }
+  hfc-search-panel {
+    margin: 16px 24px 16px 24px;
+    width: calc(100vw - 48px);
+  }
+}
+@include breakpoint($large-desktop) {
+  #maintenanceSelector {
+    margin: 4px 44px 0 44px;
+  }
+  hfc-search-panel {
+    margin: 16px 36px 16px 36px;
+    width: calc(100vw - 72px);
+  }
+}

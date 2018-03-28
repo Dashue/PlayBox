@@ -1,0 +1,15 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap (keyup.enter)="submit()">
+  <hfc-autocomplete [parentForm]="form" idControlName="itemKey"
+                    descriptionControlName="itemDescription" (searchClick)="itemSearch()"
+                    idPlaceholder="Item" descriptionPlaceholder="Item Description"
+                    [idOptions]="filteredItemIdOptions | async"
+                    [descriptionOptions]="filteredItemDescriptionOptions | async">
+  </hfc-autocomplete>
+
+  <md-form-field dividerColor="accent">
+    <input mdInput [mdDatepicker]="effectiveDatePicker" placeholder="Effective Date"
+           formControlName="effectiveDate" type="search">
+    <md-datepicker-toggle mdSuffix [for]="effectiveDatePicker"></md-datepicker-toggle>
+    <md-datepicker #effectiveDatePicker></md-datepicker>
+  </md-form-field>
+</form>

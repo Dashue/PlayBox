@@ -1,0 +1,54 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap *ngIf="gridConfigLoaded" (keyup.enter)="submit()">
+  <hfc-autocomplete [parentForm]="form" idControlName="customerNumber"
+                    descriptionControlName="customerName" idPlaceholder="Customer"
+                    descriptionPlaceholder="Customer Name"
+                    [idOptions]="filteredCustomerIdOptions | async"
+                    [descriptionOptions]="filteredCustomerDescriptionOptions | async"
+                    [hideLookup]="true">
+  </hfc-autocomplete>
+
+  <md-form-field color="accent">
+    <input mdInput formControlName="city" placeholder="City" type="search">
+  </md-form-field>
+
+  <md-select placeholder="State" formControlName="state" color="accent">
+    <md-option *ngFor="let option of stateOptions" [value]="option.value">
+      {{option.text}}
+    </md-option>
+  </md-select>
+
+  <md-form-field color="accent" id="zipCode">
+    <input mdInput formControlName="zipCode" placeholder="Zip Code" type="search">
+  </md-form-field>
+
+  <div fxLayout="row" fxLayoutWrap id="outletContainer">
+    <md-form-field color="accent" id="outletId">
+      <input mdInput formControlName="outletId" placeholder="Outlet" type="search">
+    </md-form-field>
+    <span class="autoCompleteSeparator">&nbsp;</span>
+    <md-form-field color="accent" id="outletDescription">
+      <input mdInput formControlName="outletDescription" placeholder="Outlet Description" type="search">
+    </md-form-field>
+  </div>
+
+  <md-select placeholder="Price List" color="accent" formControlName="priceListId"
+             id="priceList">
+    <md-option></md-option>
+    <md-option *ngFor="let option of priceListOptions" [value]="option.fieldKey">
+      {{option.fieldDisplayText}}
+    </md-option>
+  </md-select>
+
+  <md-select placeholder="Price Bracket" formControlName="bracketId" color="accent">
+    <md-option *ngFor="let option of priceBracketOptions" [value]="option.fieldId">
+      {{option.fieldDescription}}
+    </md-option>
+  </md-select>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+  <span id="errorMessage">{{errorMessage}}</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <md-progress-spinner mode="indeterminate" color="accent" *ngIf="!gridConfigLoaded && !errorMessage">
+  </md-progress-spinner>
+</div>

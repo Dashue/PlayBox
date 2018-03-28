@@ -1,0 +1,8 @@
+<label md-dialog-title>{{title}}</label>
+<md-dialog-content>
+  <p>{{message}}</p>
+</md-dialog-content>
+<md-dialog-actions fxLayoutAlign="end center">
+  <button md-button color="accent" (click)="close(false)">CANCEL</button>
+  <button md-button color="accent" (click)="close(true)">OK</button>
+</md-dialog-actions>

@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutWrap>
+  <form id="maintenanceSelector" [formGroup]="maintenanceSelectorForm" fxLayout="row"
+        fxLayoutAlign="start center" fxFlex="100">
+    <label>Switch Table:</label>
+    <mat-select fxFlex formControlName="selectedGrid" color="accent" *ngIf="groups.length > 0">
+      <mat-optgroup *ngFor="let group of groups" [label]="group">
+        <mat-option *ngFor="let gridInfo of maintenanceService.getGrids(group)" [value]="gridInfo"
+                    (click)="changeTable(gridInfo)">
+          {{gridInfo.name}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+    <mat-select fxFlex formControlName="selectedGrid" color="accent" *ngIf="groups.length === 0">
+      <mat-option value=""></mat-option>
+    </mat-select>
+  </form>
+  <hfc-location *ngIf="selectedGrid && selectedGrid.id === 'locationGrid'" [gridInfo]="selectedGrid">
+  </hfc-location>
+</div>

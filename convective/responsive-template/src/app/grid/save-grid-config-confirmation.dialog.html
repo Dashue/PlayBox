@@ -1,0 +1,23 @@
+<label matDialogTitle>Save Grid Configuration</label>
+<mat-dialog-content>
+  <form [formGroup]="form" fxLayout="row" fxLayoutWrap fxLayoutAlign="start center" fxFlex="100">
+    <mat-select fxFlex="100" formControlName="selectedConfig" color="accent">
+      <mat-option [value]="newConfig" (click)="selectNewConfig()">New...</mat-option>
+      <mat-option *ngFor="let config of configurations" [value]="config" (click)="selectConfig()">
+        {{getConfigDisplayName(config)}}
+      </mat-option>
+    </mat-select>
+   <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100" *ngIf="showNewConfig">
+    <mat-form-field fxFlex="100" color="accent">
+      <input matInput placeholder="Configuration Name" formControlName="newConfigName">
+    </mat-form-field>
+  </div>
+    <mat-checkbox fxFlex="100" fxLayoutAlign="start" formControlName="isUserDefault" color="accent">
+      Default
+    </mat-checkbox>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end center">
+  <button mat-button color="accent" (click)="deleteConfiguration()" *ngIf="showDelete">DELETE</button>
+  <button mat-button color="accent" (click)="close()">OK</button>
+</mat-dialog-actions>

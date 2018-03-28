@@ -1,0 +1,61 @@
+@import '../shared/breakpoints';
+
+.columnPickerDialog {
+  .mat-dialog-container {
+    padding: 24px 0 0;
+
+    [matDialogTitle],
+    mat-dialog-content {
+      padding: 0 24px;
+    }
+    hfc-column-picker {
+      display: flex;
+      flex-direction: column;
+    }
+    mat-dialog-actions {
+      padding: 8px;
+
+      .mat-button {
+        padding: 0 8px;
+        min-width: 64px;
+
+        &:nth-child(even) {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+  .container {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-bottom: 6px;
+
+    mat-list-item {
+      min-width: 160px;
+    }
+  }
+}
+@include height-breakpoint($handset) {
+  .columnPickerDialog {
+    .container {
+      max-height: 300px !important;
+      overflow-y: auto;
+    }
+  }
+}
+@include height-breakpoint($tablet) {
+  .columnPickerDialog {
+    .container {
+      max-height: 500px !important;
+      overflow-y: auto;
+    }
+  }
+}
+@include height-breakpoint($desktop) {
+  .columnPickerDialog {
+    .container {
+      max-height: 700px !important;
+      overflow-y: auto;
+    }
+  }
+}

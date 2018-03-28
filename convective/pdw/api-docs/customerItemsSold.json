@@ -1,0 +1,168 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Customer Item Sold API",
+    "description": "Customer Item Sold API Specification",
+    "version": "0.0.1",
+    "x-projectname": "oppdw_customerItemsSold"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/apps/OPPDW/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/customerItemsSold": {
+      "get": {
+        "summary": "Get a list of items sold to a customer recently",
+        "description": "Returns items sold to a customer based on the effective date specified.",
+        "operationId": "customerItemsSold",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Filter by customer id"
+          },
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Filter by effective date (YYYY-MM-DD)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Collection returned",
+            "schema": {
+              "$ref": "#/definitions/customerItemSoldList"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/customerItemsSold/{itemNumber}": {
+      "get": {
+        "summary": "Get an item sold to a customer ",
+        "description": "Get an item sold to a customer.",
+        "operationId": "getCustomerItemSold",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "itemNumber",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id of item to return"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Item returned",
+            "schema": {
+              "$ref": "#/definitions/soldItem"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/responses/ResourceNotFound"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "ResourceNotFound": {
+      "description": "The specified resource could not be found"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "customerItemSoldList": {
+      "type": "object",
+      "required": [
+        "itemsSold",
+        "total"
+      ],
+      "properties": {
+        "itemsSold": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/soldItem"
+          }
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer",
+          "description": "Total number of rows found in search"
+        }
+      }
+    },
+    "soldItem": {
+      "type": "object",
+      "required": [
+        "itemId",
+        "description",
+        "itemNumber"
+      ],
+      "properties": {
+        "itemId": {
+          "type": "number",
+          "description": "Hormel primary key of item number"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of item"
+        },
+        "itemNumber": {
+          "type": "string",
+          "description": "Hormel item number"
+        }
+      }
+    }
+  }
+}

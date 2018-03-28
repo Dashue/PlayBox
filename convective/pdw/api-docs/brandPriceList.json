@@ -1,0 +1,208 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Brand Price List API",
+    "description": "Brand Price List API Specification",
+    "version": "0.0.1",
+    "x-projectname": "OPPDW_brandPriceList"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/apps/OPPDW/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/brandPriceList": {
+      "get": {
+        "summary": "Get a list prices based on Brand and Price List",
+        "description": "Returns item prices that fit the applied filter parameters.",
+        "operationId": "getBrandPriceList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Brand of result set to return"
+          },
+          {
+            "name": "priceList",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Price List of result set to return"
+          },
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Effective Date of result set to return"
+          },
+          {
+            "name": "displayType",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "CURRENT",
+              "ALL"
+            ],
+            "description": "Filters number of records to return (Options: CURRENT, ALL)"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Page number of result set to return"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Number of entries to return per request"
+          },
+          {
+            "name": "sortColumns",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Ordered and comma separated list of columns to sort by"
+          },
+          {
+            "name": "sortDirections",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Ordered and comma separated list of column sort directions"
+          },
+          {
+            "name": "gridName",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "gridName for grid user selection"
+          },
+          {
+            "name": "exportConfigurationID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "gridUserSelectionID of temp grid user selection for download"
+          },
+          {
+            "name": "outputType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Options include application/json,application/pdf,application/vnd.ms-excel"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item Prices for a Brand",
+            "schema": {
+              "$ref": "#/definitions/brandPriceList"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "brandPriceList": {
+      "type": "object",
+      "required": [
+        "headers",
+        "data",
+        "page",
+        "pageSize",
+        "total"
+      ],
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/header"
+          }
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/brandPrices"
+          }
+        }
+      }
+    },
+    "brandPrices": {
+      "description": "Brand prices across brackets for a single 'effective' date.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/column"
+      }
+    },
+    "header": {
+      "type": "object",
+      "properties": {
+        "columnId": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      }
+    },
+    "column": {
+      "type": "object",
+      "properties": {
+        "columnId": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

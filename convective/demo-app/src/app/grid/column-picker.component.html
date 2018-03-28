@@ -1,0 +1,31 @@
+<label md-dialog-title>Select columns</label>
+
+<md-dialog-content *ngIf="!media.isActive('xs')">
+  <div class="container" fxLayout="row" fxLayoutWrap fxLayoutAlign="start start">
+    <md-list dense fxFlex="50">
+      <ng-container *ngFor="let item of values; let i = index">
+        <md-list-item *ngIf="i % 2 == 0">
+          <md-checkbox color="primary" [checked]="item.isChecked" (click)="click(item)"> {{item.name}}</md-checkbox>
+        </md-list-item>
+      </ng-container>
+    </md-list>
+    <md-list dense fxFlex="50">
+      <ng-container *ngFor="let item of values; let i = index">
+        <md-list-item *ngIf="i % 2 == 1">
+          <md-checkbox color="primary" [checked]="item.isChecked" (click)="click(item)"> {{item.name}}</md-checkbox>
+        </md-list-item>
+      </ng-container>
+    </md-list>
+  </div>
+</md-dialog-content>
+
+<md-dialog-content *ngIf="media.isActive('xs')">
+  <md-list class="container" dense>
+    <md-list-item *ngFor="let item of values">
+       <md-checkbox color="primary" [checked]="item.isChecked" (click)="click(item)"> {{item.name}}</md-checkbox>
+    </md-list-item>
+  </md-list>
+</md-dialog-content>
+<md-dialog-actions fxLayoutAlign="end center">
+  <button md-button color="accent" (click)="close()">OK</button>
+</md-dialog-actions>

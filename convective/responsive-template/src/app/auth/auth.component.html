@@ -1,0 +1,14 @@
+<form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start center" fxFlex>
+  <img [src]="configService.logoPath" width="300">
+  <mat-form-field color="accent">
+    <input matInput id="username" formControlName="username" placeholder="Username">
+  </mat-form-field>
+  <mat-form-field color="accent">
+    <input matInput id="password" type="password" formControlName="password" placeholder="Password">
+  </mat-form-field>
+  <button mat-raised-button (click)="login()" color="accent">Login</button>
+  <mat-spinner *ngIf="loginInProgress" color="accent"></mat-spinner>
+  <div class="errorMessage" fxLayout="column" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</form>

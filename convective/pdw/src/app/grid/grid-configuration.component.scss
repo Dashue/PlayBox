@@ -1,0 +1,19 @@
+@import '../shared/breakpoints';
+
+#gridOptionsForm {
+  #saveOptionsButton {
+    margin-left: 0;
+  }
+  md-select {
+    width: 140px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
+@include breakpoint($desktop) {
+  #gridOptionsForm {
+    md-select {
+      width: 220px;
+    }
+  }
+}

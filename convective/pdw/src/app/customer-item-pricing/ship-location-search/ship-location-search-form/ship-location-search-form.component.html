@@ -1,0 +1,16 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap *ngIf="gridConfigLoaded" (keyup.enter)="submit()">
+  <hfc-autocomplete [parentForm]="form" idControlName="plantNumber"
+                    descriptionControlName="plantName"
+                    idPlaceholder="Ship Loc" descriptionPlaceholder="Ship Loc Description"
+                    [idOptions]="filteredShipLocationIdOptions | async"
+                    [descriptionOptions]="filteredShipLocationDescriptionOptions | async"
+                    [hideLookup]="true">
+  </hfc-autocomplete>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+  <span id="errorMessage">{{errorMessage}}</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <md-progress-spinner mode="indeterminate" color="accent" *ngIf="!gridConfigLoaded && !errorMessage">
+  </md-progress-spinner>
+</div>

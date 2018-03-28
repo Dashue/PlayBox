@@ -1,0 +1,231 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Customer Item Pricing API",
+    "description": "Customer Item Pricing API Specification",
+    "version": "0.0.2",
+    "x-projectname": "oppdw_customerItemPricing"
+  },
+  "host": "lpcoswas1d.hfc.ad:9181",
+  "basePath": "/cf11ext/coldfusion/hfcservices/apps/OPPDW/index.cfm?endpoint=",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/customerItemPricing": {
+      "get": {
+        "summary": "Generate the data for the Customer Item Pricing Report",
+        "description": "Allows filtering and generation of the Customer Item Pricing Report.",
+        "operationId": "customerItemPricing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customer",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Lookup by customer id. This is the primary key of MR_CUSTOMER."
+          },
+          {
+            "name": "item",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Lookup by item id. This is the primary key of MR_PRODUCT_MASTER."
+          },
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Lookup by effective date. In the Iso Date Format (YYYY-MM-DD)."
+          },
+          {
+            "name": "shipLoc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by Ship Location id. Primary Key of SHIP_LOC."
+          },
+          {
+            "name": "priceBracket",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Filter by Price Bracket id. Number between 1 and 9."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Customer item pricing data returned",
+            "schema": {
+              "$ref": "#/definitions/customerItemPricing"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "API key is missing or invalid"
+    },
+    "BadRequest": {
+      "description": "The request parameters were invalid"
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "X-APIKEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "customerItemPricing": {
+      "type": "object",
+      "required": [
+        "customerData"
+      ],
+      "properties": {
+        "customerData": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "zipCode": {
+              "type": "string"
+            },
+            "shipLocID": {
+              "type": "integer"
+            },
+            "shipLocKey": {
+              "type": "string"
+            },
+            "shipLocDesc": {
+              "type": "string"
+            },
+            "priceBracket": {
+              "type": "string"
+            }
+          }
+        },
+        "priceListData": {
+          "type": "object",
+          "properties": {
+            "priceList": {
+              "type": "string"
+            },
+            "outlet": {
+              "type": "string"
+            },
+            "fullPalletQty": {
+              "type": "integer"
+            },
+            "palletLayerQty": {
+              "type": "integer"
+            }
+          }
+        },
+        "itemData": {
+          "type": "object",
+          "properties": {
+            "truckloadPrice": {
+              "type": "string"
+            },
+            "leakerAllowance": {
+              "type": "boolean"
+            },
+            "pricingUnit": {
+              "type": "string",
+              "enum": [
+                "CWT",
+                "CASE",
+                "EACH",
+                ""
+              ]
+            },
+            "netWeight": {
+              "type": "string"
+            }
+          }
+        },
+        "pricing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/priceSet"
+          }
+        }
+      }
+    },
+    "priceSet": {
+      "type": "object",
+      "required": [
+        "priceList"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional name to display for non-confirmation based records. I.e. Bracket Price or Locked Bkt 6 Price."
+        },
+        "status": {
+          "type": "string",
+          "description": "Optional status of quote confirmation. Required if confirmationId is defined.",
+          "enum": [
+            "APPROVED",
+            "DENIED",
+            "PENDING"
+          ]
+        },
+        "confirmationId": {
+          "type": "integer",
+          "description": "Optional id of quote confirmation record"
+        },
+        "priceList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/priceRecord"
+          }
+        }
+      }
+    },
+    "priceRecord": {
+      "type": "object",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Label text to display."
+        },
+        "value": {
+          "type": "string",
+          "description": "Price associated with name."
+        }
+      }
+    }
+  }
+}

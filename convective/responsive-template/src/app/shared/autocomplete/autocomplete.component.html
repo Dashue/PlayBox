@@ -1,0 +1,37 @@
+<div class="hfcAutocompleteContainer" fxLayout="row" fxLayoutWrap fxLayoutAlign="start center"
+     [formGroup]="parentForm">
+  <div fxLayout="column">
+    <mat-form-field dividerColor="accent" id="id">
+      <input matInput [placeholder]="idPlaceholder" [matAutocomplete]="idAutocomplete" type="search"
+             [formControlName]="idControlName">
+    </mat-form-field>
+    <mat-progress-bar id="idProgressBar" *ngIf="idLookupInProgress" mode="indeterminate" color="accent">
+    </mat-progress-bar>
+    <mat-autocomplete #idAutocomplete="matAutocomplete" [displayWith]="idDisplayFn">
+      <mat-option *ngFor="let option of idOptions" [value]="option">
+        {{option.fieldDisplayText}}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+  <span class="autoCompleteSeparator">-</span>
+  <div fxLayout="column">
+    <mat-form-field dividerColor="accent" id="description"
+                        [ngStyle]="{'margin-right': hideLookup ? '16px' : '0'}">
+      <input matInput [placeholder]="descriptionPlaceholder" [formControlName]="descriptionControlName"
+             [matAutocomplete]="descriptionAutocomplete" type="search">
+    </mat-form-field>
+    <mat-progress-bar id="descriptionProgressBar" *ngIf="descriptionLookupInProgress" mode="indeterminate"
+                   color="accent"></mat-progress-bar>
+    <mat-autocomplete #descriptionAutocomplete="matAutocomplete" [displayWith]="descriptionDisplayFn">
+      <mat-option *ngFor="let option of descriptionOptions" [value]="option">
+        {{option.fieldDisplayText}}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+  <button mat-icon-button (click)="searchClick.emit()" *ngIf="!hideLookup" color="primary" type="button">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-button (click)="searchClick.emit()" *ngIf="!hideLookup" color="primary" type="button">
+    <mat-icon>search</mat-icon> {{idPlaceholder}} Search
+  </button>
+</div>

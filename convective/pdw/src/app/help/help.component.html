@@ -1,0 +1,25 @@
+<md-card>
+  <md-card-title>Documentation</md-card-title>
+  <md-card-content>
+    <ul>
+      <li *ngIf="authService.isInRole('PWD_PRICE_LOOKUP_MENU') && authService.isInRole('PDW_ITEM_PRICING_LOOKUP')">
+        <a id="allPriceLookups"
+           href="http://corprdsvn/svn/cfdocs/trunk/OPPDW-OrderProcessingPriceDataWarehouse/Pricing Lookups/OPPDWAllLookupsUserGuide.docx">
+          Price Lookup User Guide - All Lookups
+        </a>
+      </li>
+      <li *ngIf="authService.isInRole('PWD_PRICE_LOOKUP_MENU') && authService.isInRole('PDW_PRICE_CHANGE_BRACKET_LOOKUP')">
+        <a id="BrandManagerLookups"
+           href="http://corprdsvn/svn/cfdocs/trunk/OPPDW-OrderProcessingPriceDataWarehouse/Pricing Lookups/OPPDWBrandMgrLookupsUserGuide.docx">
+          Price Lookup User Guide - Brand Manager Lookups
+        </a>
+      </li>
+      <li *ngIf="authService.isInRole('PWD_PRICE_LOOKUP_MENU') && !authService.isInRole('PDW_ITEM_PRICING_LOOKUP')">
+        <a id="priceLookups"
+           href="http://corprdsvn/svn/cfdocs/trunk/OPPDW-OrderProcessingPriceDataWarehouse/Pricing Lookups/OPPDWUserGuide.docx">
+          Price Lookup User Guide
+        </a>
+      </li>
+    </ul>
+  </md-card-content>
+</md-card>

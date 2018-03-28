@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayoutWrap>
+  <form id="formSelector" [formGroup]="formSelectorForm" fxLayout="row"
+        fxLayoutAlign="start center" fxFlex="100">
+    <label>Switch Form:</label>
+    <md-select fxFlex formControlName="selectedFormName" color="accent">
+      <md-option *ngFor="let form of forms" [value]="form" (click)="changeForm(form)">
+        {{form}}
+      </md-option>
+    </md-select>
+  </form>
+  <div id="search-panel" fxFlex="100">
+    <hfc-search-panel fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+      <hfc-grids-form #content *ngIf="selectedFormName === 'Grids'"
+                      (formData)="onFormData($event)"></hfc-grids-form>
+      <hfc-verify-item-form #content *ngIf="selectedFormName === 'Verify Item'"
+                            (formData)="onFormData($event)"></hfc-verify-item-form>
+      <hfc-item-group-form #content *ngIf="selectedFormName === 'Item Group'"
+                           (formData)="onFormData($event)"></hfc-item-group-form>
+    </hfc-search-panel>
+  </div>
+  <md-card id="valuesCard" *ngIf="submittedValues">
+    <md-card-title>Submitted</md-card-title>
+    <md-card-content>
+      {{submittedValues | json}}
+    </md-card-content>
+  </md-card>
+</div>

@@ -1,0 +1,26 @@
+.confirmationDialog {
+  .mat-dialog-container {
+    padding: 24px 0 0;
+
+    [md-dialog-title],
+    md-dialog-content {
+      padding: 0 24px;
+    }
+    hfc-confirmation-dialog {
+      display: flex;
+      flex-direction: column;
+    }
+    md-dialog-actions {
+      padding: 8px;
+
+      .mat-button {
+        padding: 0 8px;
+        min-width: 64px;
+
+        &:nth-child(even) {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

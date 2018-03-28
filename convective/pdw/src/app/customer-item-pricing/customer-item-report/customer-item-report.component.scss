@@ -1,0 +1,76 @@
+@import '../../shared/breakpoints';
+@import '../../shared/theming';
+
+.section {
+  margin-bottom: 16px;
+}
+.customerPriceDetails {
+  padding-bottom: 16px;
+
+  label {
+    width: 120px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .value {
+    width: 160px;
+    margin-right: 16px;
+
+    &.street {
+      width: 260px;
+    }
+  }
+}
+.bracketDetails,
+.confirmationDetails {
+  margin-top: 8px;
+
+  label {
+    width: 160px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .value {
+    width: 110px;
+    text-align: end;
+  }
+  .noPickUp {
+    align-self: center;
+  }
+  .confirmationStatus {
+    text-transform: capitalize;
+  }
+}
+.bracketDetails {
+  height: calc(100% - 56px);
+}
+#errorMessage {
+  margin-bottom: 8px;
+  padding: 66px 24px;
+  background-color: mat-color($app-warn, 50);
+}
+@include breakpoint($desktop) {
+  .cardContainer {
+    &:nth-child(odd) {
+      .bracketDetails,
+      .confirmationDetails {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+@include breakpoint($large-desktop) {
+  .bracketDetails,
+  .confirmationDetails {
+    margin-right: 8px;
+  }
+  .cardContainer {
+    &:nth-child(4n-1) {
+      .bracketDetails,
+      .confirmationDetails {
+        margin-right: 0;
+      }
+    }
+  }
+}

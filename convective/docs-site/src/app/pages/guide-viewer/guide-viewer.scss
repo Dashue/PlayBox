@@ -1,0 +1,22 @@
+@import '../../../styles/constants';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.docs-guide-wrapper {
+  padding: 20px $content-padding-side 0;
+
+  @media ($mat-xsmall) {
+    padding-left: $content-padding-side-xs;
+    padding-right: $content-padding-side-xs;
+  }
+}
+
+.docs-guide-content {
+  display: block;
+  margin: 0 auto;
+  max-width: 940px;
+}

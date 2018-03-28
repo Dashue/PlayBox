@@ -1,0 +1,8 @@
+<input *ngIf="multiple" type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)"
+       [uploadInput]="uploadInput" #inputFile hidden multiple />
+<input *ngIf="!multiple" type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)"
+       [uploadInput]="uploadInput" #inputFile hidden />
+<button md-button (click)="selectFile()" color="primary">
+    <md-icon>file_upload</md-icon>
+    <span>Choose File</span>
+</button>

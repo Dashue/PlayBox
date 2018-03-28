@@ -1,0 +1,75 @@
+@import '../breakpoints';
+@import '../theming';
+
+.idAutocomplete,
+.descriptionAutocomplete {
+  min-width: 280px !important;
+}
+.hfcAutocompleteContainer {
+  .mat-form-field,
+  mat-progress-bar {
+    width: 256px;
+  }
+  #id {
+    margin-right: 16px;
+  }
+  #idProgressBar,
+  #descriptionProgressBar {
+    position: relative;
+    top: -20px;
+    left: 0;
+    height: 4px;
+  }
+  .autoCompleteSeparator {
+    display: none;
+  }
+  .mat-button {
+    display: block;
+    width: 256px;
+    margin-bottom: 16px;
+  }
+  .mat-icon-button {
+    display: none;
+  }
+}
+@include breakpoint(410px) {
+  .idAutocomplete,
+  .descriptionAutocomplete {
+    min-width: 250px !important;
+  }
+  .hfcAutocompleteContainer {
+    .mat-form-field,
+    mat-progress-bar {
+      width: 167px;
+    }
+    .autoCompleteSeparator {
+      display: block;
+      margin-right: 16px;
+    }
+    #id,
+    #idProgressBar {
+      width: 100px;
+    }
+    .mat-icon-button {
+      color: mat-color($app-primary);
+    }
+    .mat-button {
+      display: none;
+    }
+    .mat-icon-button {
+      display: block;
+    }
+  }
+}
+@include breakpoint($large-handset) {
+  .idAutocomplete,
+  .descriptionAutocomplete {
+    min-width: 400px !important;
+  }
+  .hfcAutocompleteContainer {
+    #description,
+    #descriptionProgressBar {
+      width: 256px;
+    }
+  }
+}

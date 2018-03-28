@@ -1,0 +1,55 @@
+<md-toolbar color="primary" class="mat-elevation-z1">
+  <button md-icon-button id="menu" (click)="navService.openNav()" fxHide.gt-sm
+          *ngIf="authService.isLoggedIn && !navService.isBackEnabled">
+    <md-icon>menu</md-icon>
+  </button>
+  <button md-icon-button id="back" (click)="navService.goBack()" *ngIf="navService.isBackEnabled">
+    <md-icon>arrow_back</md-icon>
+  </button>
+  <img [src]="configService.logoPath" fxHide.xs *ngIf="authService.isLoggedIn">
+  <span class="title">{{navService.title}}</span>
+  <span fxFlex></span>
+  <div class="environmentContainer" fxLayout="column" fxLayoutAlign="center center"
+       *ngIf="environmentName !== 'Production' && !media.isActive('xs')">
+    <div>{{environmentName}} System</div>
+    <div>Data Not Live</div>
+  </div>
+  <div *ngIf="navService.showSelectItem" fxHide fxShow.xs>
+    <button md-button (click)="selectItem()">SELECT</button>
+  </div>
+  <button md-button id="userMenu" *ngIf="authService.isLoggedIn && authService.firstName"
+          [mdMenuTriggerFor]="toolbarMenu" fxHide.lt-md>
+    {{authService.firstName | lowercase}}
+  </button>
+</md-toolbar>
+<div *ngIf="authService.isLoggedIn" fxHide fxShow.gt-sm class="topNav mat-elevation-z1" fxLayout="row">
+  <span *ngFor="let item of navItems">
+    <span *ngIf="item.children.length > 0">
+      <button md-button color="primary" [mdMenuTriggerFor]="priceLookup">
+        {{item.name}}
+        <md-icon>expand_more</md-icon>
+      </button>
+      <md-menu #priceLookup="mdMenu" [overlapTrigger]="false">
+        <button *ngFor="let child of item.children" md-menu-item [routerLink]="child.route"
+                [ngClass]="{'active': router.isActive(child.route, true)}">
+          <md-icon>{{child.iconName}}</md-icon>
+          <span>{{child.name}}</span>
+        </button>
+      </md-menu>
+    </span>
+    <span *ngIf="item.children.length === 0">
+      <button md-button color="primary" [routerLink]="item.route"
+              *ngIf="authService.isInRoles(item.requiredRoles)"
+              [ngClass]="{'active': router.isActive(item.route, true)}">
+        {{item.name}}
+      </button>
+    </span>
+  </span>
+</div>
+
+<md-menu #toolbarMenu="mdMenu" [overlapTrigger]="false">
+  <button md-menu-item (click)="authService.logout()">
+    <md-icon>exit_to_app</md-icon>
+    <span>Logout</span>
+  </button>
+</md-menu>

@@ -1,0 +1,41 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutWrap *ngIf="gridConfigLoaded" (keyup.enter)="submit()">
+  <hfc-autocomplete [parentForm]="form" idControlName="customerKey"
+                    descriptionControlName="customerDescription"
+                    idPlaceholder="Customer" descriptionPlaceholder="Customer Description"
+                    [idOptions]="filteredCustomerIdOptions | async"
+                    [descriptionOptions]="filteredCustomerDescriptionOptions | async"
+                    (searchClick)="customerSearch()">
+  </hfc-autocomplete>
+  <hfc-autocomplete [parentForm]="form" idControlName="itemKey"
+                    descriptionControlName="itemDescription"
+                    idPlaceholder="Item" descriptionPlaceholder="Item Description"
+                    [idOptions]="filteredItemIdOptions | async"
+                    [descriptionOptions]="filteredItemDescriptionOptions | async"
+                    (searchClick)="itemSearch()">
+  </hfc-autocomplete>
+  <md-form-field dividerColor="accent">
+    <input mdInput [mdDatepicker]="effectiveDatePicker" placeholder="Effective Date"
+           formControlName="effectiveDate" type="search">
+    <md-datepicker-toggle mdSuffix [for]="effectiveDatePicker"></md-datepicker-toggle>
+    <md-datepicker #effectiveDatePicker></md-datepicker>
+  </md-form-field>
+  <hfc-autocomplete [parentForm]="form" idControlName="shipLocationId" *ngIf="showShipLocation"
+                    descriptionControlName="shipLocationDescription"
+                    idPlaceholder="Ship Loc" descriptionPlaceholder="Ship Loc Description"
+                    [idOptions]="filteredShipLocationIdOptions | async"
+                    [descriptionOptions]="filteredShipLocationDescriptionOptions | async"
+                    (searchClick)="shipLocationSearch()">
+  </hfc-autocomplete>
+  <md-select placeholder="Price Bracket" formControlName="priceBracketId" color="accent"
+             *ngIf="showShipLocation">
+    <md-option *ngFor="let option of priceBracketOptions" [value]="option.fieldId">
+      {{option.fieldDescription}}
+    </md-option>
+  </md-select>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="errorMessage">
+  <span id="errorMessage">{{errorMessage}}</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="!gridConfigLoaded && !errorMessage">
+  <md-progress-spinner mode="indeterminate" color="accent"></md-progress-spinner>
+</div>

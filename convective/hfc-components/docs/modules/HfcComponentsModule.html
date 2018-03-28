@@ -1,0 +1,531 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>hfc-components</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	    <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">hfc-components</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../index.html">hfc-components</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                                <li class="link">
+                                  <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../modules.html" >
+                            <div class="menu-toggler linked" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            >
+                                <span class="fa fa-archive"></span>
+                                <span class="link-name">Modules</span>
+                                <span class="fa fa-angle-down"></span>
+                            </div>
+                        </a>
+                        <ul class="links collapse "
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/HfcComponentsModule.html"  data-type="entity-link" class="active" >HfcComponentsModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-components-links"
+                            >
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/SearchPanelComponent.html" >SearchPanelComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse"
+                                data-target="#xs-interfaces-links"
+                            >
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="fa fa-angle-down"></span>
+                        </div>
+                        <ul class="links collapse "
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="../interfaces/SearchPanelContent.html" >SearchPanelContent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../index.html">hfc-components</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../index.html"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                                       <li class="link">
+                                         <a href="../index.html" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../modules.html" >
+                                   <div class="menu-toggler linked" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   >
+                                       <span class="fa fa-archive"></span>
+                                       <span class="link-name">Modules</span>
+                                       <span class="fa fa-angle-down"></span>
+                                   </div>
+                               </a>
+                               <ul class="links collapse "
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/HfcComponentsModule.html"  data-type="entity-link" class="active" >HfcComponentsModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#components-links"
+                   >
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/SearchPanelComponent.html" >SearchPanelComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple menu-toggler" data-toggle="collapse"
+                                       data-target="#interfaces-links"
+                   >
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="fa fa-angle-down"></span>
+                               </div>
+                               <ul class="links collapse "
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="../interfaces/SearchPanelContent.html" >SearchPanelContent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+<ol class="breadcrumb">
+  <li>Modules</li>
+  <li>HfcComponentsModule</li>
+</ol>
+
+<div class="text-center">
+    <div id="module-graph-svg">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="1158pt" height="284pt"
+ viewBox="0.00 0.00 1158.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-280 1154,-280 1154,4 -4,4"/>
+<text text-anchor="start" x="554.0091" y="-42.4" font-family="sans-serif" font-weight="bold" font-size="14.00" fill="#000000">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="341,-10 341,-30 361,-30 361,-10 341,-10"/>
+<text text-anchor="start" x="364.629" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="454,-10 454,-30 474,-30 474,-10 454,-10"/>
+<text text-anchor="start" x="477.7251" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="540,-10 540,-30 560,-30 560,-10 540,-10"/>
+<text text-anchor="start" x="563.7812" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="637,-10 637,-30 657,-30 657,-10 637,-10"/>
+<text text-anchor="start" x="660.6732" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="733,-10 733,-30 753,-30 753,-10 733,-10"/>
+<text text-anchor="start" x="756.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_HfcComponentsModule</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="8,-70 8,-268 1142,-268 1142,-70 8,-70"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_HfcComponentsModule_declarations</title>
+<polygon fill="none" stroke="#000000" points="968,-78 968,-130 1134,-130 1134,-78 968,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_HfcComponentsModule_imports</title>
+<polygon fill="none" stroke="#000000" points="16,-78 16,-130 960,-130 960,-78 16,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_HfcComponentsModule_exports</title>
+<polygon fill="none" stroke="#000000" points="481,-208 481,-260 651,-260 651,-208 481,-208"/>
+</g>
+<!-- SearchPanelComponent -->
+<g id="node1" class="node">
+<title>SearchPanelComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="1126.0226,-122 975.9774,-122 975.9774,-86 1126.0226,-86 1126.0226,-122"/>
+<text text-anchor="middle" x="1051" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">SearchPanelComponent</text>
+</g>
+<!-- HfcComponentsModule -->
+<g id="node2" class="node">
+<title>HfcComponentsModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="641.8089,-187 638.8089,-191 617.8089,-191 614.8089,-187 490.1911,-187 490.1911,-151 641.8089,-151 641.8089,-187"/>
+<text text-anchor="middle" x="566" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">HfcComponentsModule</text>
+</g>
+<!-- SearchPanelComponent&#45;&gt;HfcComponentsModule -->
+<g id="edge1" class="edge">
+<title>SearchPanelComponent&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M1051,-122.2921C1051,-144.2057 1051,-178 1051,-178 1051,-178 651.7813,-178 651.7813,-178"/>
+<polygon fill="#000000" stroke="#000000" points="651.7813,-174.5001 641.7813,-178 651.7812,-181.5001 651.7813,-174.5001"/>
+</g>
+<!-- SearchPanelComponent  -->
+<g id="node10" class="node">
+<title>SearchPanelComponent </title>
+<polygon fill="#fb8072" stroke="#000000" points="643.0218,-252 488.9782,-252 488.9782,-216 643.0218,-216 643.0218,-252"/>
+<text text-anchor="middle" x="566" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">SearchPanelComponent </text>
+</g>
+<!-- HfcComponentsModule&#45;&gt;SearchPanelComponent  -->
+<g id="edge9" class="edge">
+<title>HfcComponentsModule&#45;&gt;SearchPanelComponent </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M566,-187.1061C566,-187.1061 566,-205.991 566,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="562.5001,-205.9909 566,-215.991 569.5001,-205.991 562.5001,-205.9909"/>
+</g>
+<!-- CommonModule -->
+<g id="node3" class="node">
+<title>CommonModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="951.6681,-122 948.6681,-126 927.6681,-126 924.6681,-122 840.3319,-122 840.3319,-86 951.6681,-86 951.6681,-122"/>
+<text text-anchor="middle" x="896" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">CommonModule</text>
+</g>
+<!-- CommonModule&#45;&gt;HfcComponentsModule -->
+<g id="edge2" class="edge">
+<title>CommonModule&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M896,-122.1061C896,-141.3391 896,-169 896,-169 896,-169 651.7087,-169 651.7087,-169"/>
+<polygon fill="#000000" stroke="#000000" points="651.7087,-165.5001 641.7087,-169 651.7086,-172.5001 651.7087,-165.5001"/>
+</g>
+<!-- MdCardModule -->
+<g id="node4" class="node">
+<title>MdCardModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="822.2064,-122 819.2064,-126 798.2064,-126 795.2064,-122 715.7936,-122 715.7936,-86 822.2064,-86 822.2064,-122"/>
+<text text-anchor="middle" x="769" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">MdCardModule</text>
+</g>
+<!-- MdCardModule&#45;&gt;HfcComponentsModule -->
+<g id="edge3" class="edge">
+<title>MdCardModule&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M769,-122.027C769,-138.3976 769,-160 769,-160 769,-160 651.8784,-160 651.8784,-160"/>
+<polygon fill="#000000" stroke="#000000" points="651.8784,-156.5001 641.8784,-160 651.8784,-163.5001 651.8784,-156.5001"/>
+</g>
+<!-- MdButtonModule -->
+<g id="node5" class="node">
+<title>MdButtonModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="697.6123,-122 694.6123,-126 673.6123,-126 670.6123,-122 580.3877,-122 580.3877,-86 697.6123,-86 697.6123,-122"/>
+<text text-anchor="middle" x="639" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">MdButtonModule</text>
+</g>
+<!-- MdButtonModule&#45;&gt;HfcComponentsModule -->
+<g id="edge4" class="edge">
+<title>MdButtonModule&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M611.0491,-122.1061C611.0491,-122.1061 611.0491,-140.991 611.0491,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="607.5492,-140.9909 611.0491,-150.991 614.5492,-140.991 607.5492,-140.9909"/>
+</g>
+<!-- MdExpansionModule -->
+<g id="node6" class="node">
+<title>MdExpansionModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="562.0968,-122 559.0968,-126 538.0968,-126 535.0968,-122 423.9032,-122 423.9032,-86 562.0968,-86 562.0968,-122"/>
+<text text-anchor="middle" x="493" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">MdExpansionModule</text>
+</g>
+<!-- MdExpansionModule&#45;&gt;HfcComponentsModule -->
+<g id="edge5" class="edge">
+<title>MdExpansionModule&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M526.1971,-122.1061C526.1971,-122.1061 526.1971,-140.991 526.1971,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="522.6971,-140.9909 526.1971,-150.991 529.6971,-140.991 522.6971,-140.9909"/>
+</g>
+<!-- MdInputModule -->
+<g id="node7" class="node">
+<title>MdInputModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="406.0465,-122 403.0465,-126 382.0465,-126 379.0465,-122 297.9535,-122 297.9535,-86 406.0465,-86 406.0465,-122"/>
+<text text-anchor="middle" x="352" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">MdInputModule</text>
+</g>
+<!-- MdInputModule&#45;&gt;HfcComponentsModule -->
+<g id="edge6" class="edge">
+<title>MdInputModule&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M352,-122.027C352,-138.3976 352,-160 352,-160 352,-160 480.2504,-160 480.2504,-160"/>
+<polygon fill="#000000" stroke="#000000" points="480.2505,-163.5001 490.2504,-160 480.2504,-156.5001 480.2505,-163.5001"/>
+</g>
+<!-- MdSelectModule -->
+<g id="node8" class="node">
+<title>MdSelectModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="279.7022,-122 276.7022,-126 255.7022,-126 252.7022,-122 166.2978,-122 166.2978,-86 279.7022,-86 279.7022,-122"/>
+<text text-anchor="middle" x="223" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">MdSelectModule</text>
+</g>
+<!-- MdSelectModule&#45;&gt;HfcComponentsModule -->
+<g id="edge7" class="edge">
+<title>MdSelectModule&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M223,-122.1061C223,-141.3391 223,-169 223,-169 223,-169 480.3026,-169 480.3026,-169"/>
+<polygon fill="#000000" stroke="#000000" points="480.3026,-172.5001 490.3026,-169 480.3025,-165.5001 480.3026,-172.5001"/>
+</g>
+<!-- FlexLayoutModule -->
+<g id="node9" class="node">
+<title>FlexLayoutModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="148.0954,-122 145.0954,-126 124.0954,-126 121.0954,-122 23.9046,-122 23.9046,-86 148.0954,-86 148.0954,-122"/>
+<text text-anchor="middle" x="86" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">FlexLayoutModule</text>
+</g>
+<!-- FlexLayoutModule&#45;&gt;HfcComponentsModule -->
+<g id="edge8" class="edge">
+<title>FlexLayoutModule&#45;&gt;HfcComponentsModule</title>
+<path fill="none" stroke="#000000" d="M86,-122.2921C86,-144.2057 86,-178 86,-178 86,-178 480.2074,-178 480.2074,-178"/>
+<polygon fill="#000000" stroke="#000000" points="480.2075,-181.5001 490.2074,-178 480.2074,-174.5001 480.2075,-181.5001"/>
+</g>
+</g>
+</svg>
+
+    </div>
+    <div class="btn-group">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+    </div>
+</div>
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    
+
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/index.ts</code>
+        </p>
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Declarations<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#declarations-anchor" target="_blank"><span class="fa fa-info-circle"></span></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="../components/SearchPanelComponent.html">SearchPanelComponent</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#exports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../components/SearchPanelComponent.html" >SearchPanelComponent</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre class="line-numbers"><code class="language-typescript">import {ModuleWithProviders, NgModule} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {MdButtonModule, MdCardModule, MdExpansionModule, MdInputModule, MdSelectModule} from &#x27;@angular/material&#x27;;
+import {FlexLayoutModule} from &#x27;@angular/flex-layout&#x27;;
+import {SearchPanelComponent} from &#x27;./search-panel/search-panel.component&#x27;;
+
+export * from &#x27;./search-panel/search-panel.component&#x27;;
+
+@NgModule({
+  imports: [
+    CommonModule,
+    MdCardModule,
+    MdButtonModule,
+    MdExpansionModule,
+    MdInputModule,
+    MdSelectModule,
+    FlexLayoutModule
+  ],
+  declarations: [
+    SearchPanelComponent
+  ],
+  exports: [
+    SearchPanelComponent
+  ]
+})
+export class HfcComponentsModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: HfcComponentsModule,
+      providers: []
+    };
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script>var COMPODOC_CURRENT_PAGE_DEPTH = 1;</script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+       <script src="../js/search/search_index.js"></script>
+
+    </body>
+</html>

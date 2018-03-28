@@ -1,0 +1,24 @@
+@import '../../shared/breakpoints';
+@import '../../shared/theming';
+
+.mat-form-field {
+  width: 256px;
+  margin-right: 16px;
+}
+mat-select {
+  width: 256px;
+  margin-right: 16px;
+}
+mat-progress-spinner {
+  margin: auto;
+}
+#errorMessage {
+  background-color: mat-color($app-warn, 50);
+  padding: 64px;
+  width: 100%;
+}
+@include breakpoint($handset) {
+  mat-select {
+    width: 167px;
+  }
+}

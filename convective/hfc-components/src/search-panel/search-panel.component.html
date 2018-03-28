@@ -1,0 +1,11 @@
+<md-expansion-panel [expanded]="expanded" (opened)="opened()" (closed)="closed()">
+  <md-expansion-panel-header>
+    <mat-panel-description>{{description}}</mat-panel-description>
+    <mat-panel-title>{{title}}</mat-panel-title>
+  </md-expansion-panel-header>
+  <ng-content (formData)="onFormData($event)"></ng-content>
+  <md-action-row>
+    <button md-button color="primary" (click)="clear()">Reset</button>
+    <button md-button color="accent" (click)="submit()">Search</button>
+  </md-action-row>
+</md-expansion-panel>

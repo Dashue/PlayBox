@@ -1,0 +1,30 @@
+{
+  "appName": "Price Data Warehouse",
+  "logoPath": "assets/1200px-Hormel_logo.png",
+  "applicationId": "OPPDW",
+  "navItems": [
+    {"name": "Price Lookup", "iconName": "list",
+      "requiredRoles": [],
+      "children": [
+        {
+          "name": "Customer Item Pricing", "iconName": "group", "route": "/customer-item-pricing",
+          "requiredRoles": ["OPPDW_CUSTOMER_ITEM_PRICING_LOOKUP"], "children": []
+        },
+        {
+          "name": "Brand/Price List", "iconName": "assignment", "route": "/brand-price-list",
+          "requiredRoles": ["OPPDW_BRAND_PRICE_LIST_LOOKUP"], "children": []
+        },
+        {
+          "name": "Item/Price List", "iconName": "list", "route": "/item-price-list",
+          "requiredRoles": ["OPPDW_ITEM_PRICE_LIST_LOOKUP"], "children": []
+        }
+      ]
+    },
+    {
+      "name": "Help", "iconName": "help_outline", "route": "/help",
+      "requiredRoles": ["PWD_PRICE_LOOKUP_MENU"],
+      "children": []
+    }
+  ],
+  "roleToChangeDefaultSelection": "OPPDW_CHANGE_DEFAULT_SELECTION"
+}

@@ -1,0 +1,23 @@
+<hfc-top-nav class="fixed-topnav" fxHide.gt-xs></hfc-top-nav>
+<mat-sidenav-container>
+  <mat-sidenav #appDrawer mode="over" opened="false">
+    <div class="sidenav-toolbar mat-elevation-z1" fxLayoutWrap>
+      <div class="environmentContainer" *ngIf="environmentName !== 'Production' && media.isActive('xs')"
+           fxFlex="100" fxLayout="row" fxLayoutAlign="center end">
+        {{environmentName}} System - Data Not Live
+      </div>
+      <div id="userName" fxLayout="row" fxLayoutAlign="start end">
+        <mat-icon>person</mat-icon>
+        <span *ngIf="authService.isLoggedIn">
+          {{authService.firstName | lowercase}}
+        </span>
+      </div>
+      <button mat-button class="self-end" id="logoutButton" (click)="logout()">Logout</button>
+    </div>
+    <mat-nav-list *ngIf="authService.isLoggedIn">
+      <hfc-menu-item *ngFor="let item of navItems" [item]="item"></hfc-menu-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <hfc-top-nav fxHide.xs></hfc-top-nav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

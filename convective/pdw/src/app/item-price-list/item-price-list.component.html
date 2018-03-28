@@ -1,0 +1,11 @@
+<div class="container" fxLayout="row" fxLayoutWrap>
+  <hfc-search-panel fxLayout="row" fxLayoutAlign="start center" fxFlex="100"
+                    [title]="searchFormTitle" [expanded]="searchPanelExpanded">
+    <hfc-item-price-list-search-form #content (formData)="onFormData($event)">
+    </hfc-item-price-list-search-form>
+  </hfc-search-panel>
+  <hfc-grid tableName="itemPriceListGrid" [instanceService]="gridInstanceService" [isReadOnly]="true"
+            [showRowDetail]="showRowDetail" [rowDetailColumns]="rowDetailColumns" [allowExport]="allowExport"
+            [saveConfigOnSearch]="true" fxFlex="100">
+  </hfc-grid>
+</div>

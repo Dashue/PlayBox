@@ -1,0 +1,7 @@
+<div class="container" fxLayout="row" fxLayoutWrap>
+  <hfc-search-panel fxLayout="row" fxLayoutAlign="start center" fxFlex="100"
+                    [title]="searchFormTitle" [expanded]="searchPanelExpanded">
+    <hfc-item-base-prices-search-form #content (formData)="onFormData($event)">
+    </hfc-item-base-prices-search-form>
+  </hfc-search-panel>
+</div>

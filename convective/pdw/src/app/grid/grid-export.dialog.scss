@@ -1,0 +1,33 @@
+.gridExportDialog {
+  .mat-dialog-container {
+    padding: 24px 0 0;
+
+    hfc-grid-export-dialog {
+      display: flex;
+      flex-direction: column;
+    }
+    [md-dialog-title] {
+      padding: 0 24px;
+      margin-bottom: 16px;
+    }
+    md-dialog-content {
+      padding: 0 24px;
+
+      md-select {
+        margin-bottom: 8px;
+      }
+    }
+    md-dialog-actions {
+      padding: 8px;
+
+      .mat-button {
+        padding: 0 8px;
+        min-width: 64px;
+
+        &:nth-child(even) {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

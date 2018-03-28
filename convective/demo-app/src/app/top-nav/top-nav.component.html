@@ -1,0 +1,33 @@
+<md-toolbar color="primary" class="mat-elevation-z1">
+  <button md-icon-button id="menu" (click)="navService.openNav()" fxHide.gt-sm
+          *ngIf="!navService.isBackEnabled">
+    <md-icon>menu</md-icon>
+  </button>
+  <button md-icon-button id="back" (click)="navService.goBack()" *ngIf="navService.isBackEnabled">
+    <md-icon>arrow_back</md-icon>
+  </button>
+  <img [src]="navService.logoPath" fxHide.xs *ngIf="authService.isLoggedIn">
+  <span class="title">{{navService.title}}</span>
+  <span fxFlex></span>
+  <button md-button id="userMenu" *ngIf="authService.isLoggedIn && authService.firstName"
+          [mdMenuTriggerFor]="toolbarMenu" fxHide.lt-md>
+    {{authService.firstName | lowercase}}
+  </button>
+</md-toolbar>
+<div fxHide fxShow.gt-sm class="topNav mat-elevation-z1" fxLayout="row">
+  <span *ngFor="let item of navItems">
+    <button md-button color="primary" [routerLink]="item.route"
+            [ngClass]="{'active': item.route ? router.isActive(item.route, true): false}">
+      {{item.name}}
+      <md-icon *ngIf="item.children.length">expand_more</md-icon>
+      <!-- TODO support nested menus -->
+    </button>
+  </span>
+</div>
+
+<md-menu #toolbarMenu="mdMenu" [overlapTrigger]="false">
+  <button md-menu-item (click)="authService.logout()">
+    <md-icon>exit_to_app</md-icon>
+    <span>Logout</span>
+  </button>
+</md-menu>

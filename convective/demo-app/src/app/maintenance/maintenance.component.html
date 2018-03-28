@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutWrap>
+  <form id="maintenanceSelector" [formGroup]="maintenanceSelectorForm" fxLayout="row"
+        fxLayoutAlign="start center" fxFlex="100">
+    <label>Switch Table:</label>
+    <md-select fxFlex formControlName="selectedTableName" color="accent">
+      <md-optgroup *ngFor="let group of groups" [label]="group">
+        <md-option *ngFor="let table of maintenanceService.getTables(group)" [value]="table"
+                   (click)="changeTable(table)">
+          {{table}}
+        </md-option>
+      </md-optgroup>
+    </md-select>
+  </form>
+
+  <hfc-search-panel fxLayout="row" fxLayoutAlign="start center" fxFlex="100" [title]="currentGridTitle">
+    <hfc-grids-form #content *ngIf="selectedTableName === 'Grids'"
+                    (formData)="onFormData($event)"></hfc-grids-form>
+    <hfc-verify-item-form #content *ngIf="selectedTableName === 'Verify Item'"
+                          (formData)="onFormData($event)"></hfc-verify-item-form>
+    <hfc-item-group-form #content *ngIf="selectedTableName === 'Item Group'"
+                         (formData)="onFormData($event)"></hfc-item-group-form>
+  </hfc-search-panel>
+
+    <hfc-select *ngFor="let item of selects" [fieldName]="item.fieldName" [displayName]="item.displayName"
+                [tableName]="selectedTableName"></hfc-select>
+
+
+  <hfc-grid [data]="data" (rowDeleted)="onRowDeleted($event)" (sortChanged)="onSortChanged($event)">
+  </hfc-grid>
+</div>

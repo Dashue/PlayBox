@@ -1,0 +1,10 @@
+@import '../../shared/breakpoints';
+
+@include breakpoint($large-handset) {
+  .container {
+    margin: 16px 24px 16px;
+  }
+}
+hfc-grid {
+  margin-top: 16px;
+}

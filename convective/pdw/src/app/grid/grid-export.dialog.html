@@ -1,0 +1,14 @@
+<label md-dialog-title>Grid Export</label>
+<md-dialog-content>
+  <form [formGroup]="exportForm" fxLayout="row" fxLayoutWrap fxLayoutAlign="start center" fxFlex="100">
+    <md-select fxFlex="100" formControlName="fileType" placeholder="File Type" color="accent">
+      <md-option *ngFor="let item of fileTypes" [value]="item.value">{{item.name}}</md-option>
+    </md-select>
+    <md-select fxFlex="100" formControlName="exportType" placeholder="Records" color="accent">
+      <md-option *ngFor="let item of exportTypes" [value]="item.value">{{item.name}}</md-option>
+    </md-select>
+  </form>
+</md-dialog-content>
+<md-dialog-actions fxLayoutAlign="end center">
+  <button md-button color="accent" (click)="close()">EXPORT</button>
+</md-dialog-actions>
